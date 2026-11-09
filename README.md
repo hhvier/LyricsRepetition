@@ -1,9 +1,12 @@
 # LyricsRepetition
+
+Weekly Billboard song charts from the first chart week of 2018 through the latest published week are in `data/billboard/`. See [docs/billboard_charts.md](docs/billboard_charts.md) for the chart list, how partial public lists are handled, and how to resume or update the scrape (`python py/billboard_charts.py scrape`).
+
 There are three folders in this repository.
 
 On the py folder are 7 py files in this. 
 fun.py and func.py are the ones containing the main functions used by the other 5 files.
-billboard_scraper.py is a web scraper for every weekly hot 100 ranking on billboard from 1959-2019.
+billboard_scraper.py is the entry point for the weekly song-chart scraper (Hot 100, genre charts, and regional charts from 2018 onward). The original Hot 100-only MySQL scraper no longer matches Billboard's pages.
 maistocadas_scraper.py is a web scraper for every anual top 100 ranking on "Mais Tocadas" from 1959-2019.
 lyric_scraper.py is a web scraper for the lyrics of the songs from the billboard rankings.
 letra_scraper.py is a web scraper for the lyrics of the songs from the Mais Tocadas rankings,
