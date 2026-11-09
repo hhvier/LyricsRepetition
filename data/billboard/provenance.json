@@ -163,5 +163,31 @@
       "chart_name": "WARM Global Dance Radio",
       "top": "Release The Pressure"
     }
-  ]
+  ],
+  "alternate_source_probes": {
+    "billboardth_com": {
+      "decision": "not_imported",
+      "reason": "Not established as the same chart as billboard.com/charts/thailand-songs-hotw.",
+      "probes": [
+        {
+          "url": "https://www.billboardth.com/thai_song?week=2022-W38",
+          "observed": "Page titled Billboard Thailand, Week of September 19, 2022, with positions through 100. No. 1 was สลักจิต by POP PONGKOOL FEAT.DA ENDORPHINE. Until Then by Tilly Birds was position 17."
+        },
+        {
+          "url": "https://www.billboardth.com/thai_song?week=2022-W07",
+          "observed": "HTTP 200 body was a Billboard Thailand 404 page (about 9 KB), not a chart. That ISO week contains 2022-02-19, the only official Billboard.com Thailand Songs week recovered here, so the two lists could not be compared."
+        }
+      ]
+    },
+    "billboardvn_wayback": {
+      "decision": "not_imported",
+      "wikipedia": "en.wikipedia.org/wiki/Billboard_Vietnam_Hot_100 says a suspension from January 2024 to May 2025. Treated as secondary. Not recorded as an official hiatus.",
+      "availability": {
+        "url": "https://billboardvn.vn/billboard-vietnam-hot-100/",
+        "closest_capture": "20231003004850",
+        "id_fetch": "https://web.archive.org/web/20231003004850id_/https://billboardvn.vn/billboard-vietnam-hot-100/ returned 793 bytes and no chart table."
+      },
+      "cdx": "Prefix CDX for billboardvn.vn/billboard-vietnam-hot-100/ timed out after 18 seconds with no body."
+    }
+  }
 }

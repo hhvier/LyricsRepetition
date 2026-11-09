@@ -67,15 +67,13 @@ class ClassifyAdvanceTest(unittest.TestCase):
             [date(2018, 1, 3), date(2018, 12, 8), date(2018, 12, 15)],
             "holiday",
         )
-        self.assertEqual(coverage["label"], "seasonal")
-        self.assertFalse(coverage["claim_complete_since_2018"])
+        self.assertEqual(coverage["label"], "seasonal_stored_weeks")
         self.assertEqual(len(coverage["seasonal_hiatuses"]), 1)
         self.assertEqual(coverage["unexplained_jumps"], [])
 
     def test_leading_gap_is_not_a_launch(self):
         coverage = assess_coverage([date(2026, 8, 1), date(2026, 8, 8)], "hits-of-the-world")
-        self.assertEqual(coverage["label"], "unknown_before_first_recovered")
-        self.assertFalse(coverage["claim_complete_since_2018"])
+        self.assertEqual(coverage["label"], "stored_weeks_start_later")
         self.assertEqual(coverage["leading_unrecovered"]["first_recovered"], "2026-08-01")
 
 
@@ -112,8 +110,7 @@ class WalkBehaviorTest(unittest.TestCase):
 
         state = self._run(fetcher)
         self.assertEqual(state["status"], "partial")
-        self.assertEqual(state["coverage_since_2018"], "unknown_before_first_recovered")
-        self.assertFalse(state["claim_complete_since_2018"])
+        self.assertEqual(state["recovered_temporal_grid"], "stored_weeks_start_later")
         self.assertNotIn("2022-02-19", state["weeks"])
         self.assertIn("2026-08-01", state["weeks"])
         self.assertIn("2026-11-07", state["weeks"])
@@ -137,9 +134,8 @@ class WalkBehaviorTest(unittest.TestCase):
             return entry(week)
 
         state = self._run(fetcher)
-        self.assertEqual(state["coverage_since_2018"], "unexplained_jump")
+        self.assertEqual(state["recovered_temporal_grid"], "unexplained_internal_gap")
         self.assertEqual(state["status"], "partial")
-        self.assertFalse(state["claim_complete_since_2018"])
         self.assertNotIn("2022-03-05", state["weeks"])
         self.assertTrue(state["unexplained_jumps"])
         self.assertEqual(state["jump_log"][0]["after"], "2022-02-19")
@@ -162,10 +158,38 @@ class WalkBehaviorTest(unittest.TestCase):
 
         state = self._run(fetcher)
         self.assertEqual(state["status"], "done")
-        self.assertEqual(state["coverage_since_2018"], "recovered_from_range_start")
+        self.assertEqual(state["recovered_temporal_grid"], "contiguous_stored_weeks")
         self.assertEqual(state["weeks"], ["2018-01-06", "2018-01-13", "2018-01-20"])
         self.assertFalse(any(url.rstrip("/").endswith("2018-01-06") for url in calls))
         self.assertFalse(any(url.rstrip("/").endswith("2018-01-13") for url in calls))
+
+    def test_export_without_state_does_not_certify_the_temporal_grid(self):
+        import csv
+        import io
+
+        from billboard_charts import COLUMNS, _export_chart
+
+        self.store.save_week(self.spec, entry(date(2018, 1, 6)))
+        state_path = self.store.state_path(self.spec.slug)
+        if state_path.exists():
+            state_path.unlink()
+        buffer = io.StringIO()
+        writer = csv.DictWriter(buffer, fieldnames=COLUMNS, extrasaction="ignore")
+        writer.writeheader()
+        row = _export_chart(
+            self.store.cache,
+            self.store.weekly,
+            writer,
+            self.spec.slug,
+            self.spec.name,
+            self.spec.region,
+            self.spec.category,
+            [],
+        )
+        self.assertEqual(row["status"], "partial")
+        self.assertEqual(row["recovered_temporal_grid"], "unknown_no_scrape_state")
+        self.assertNotIn("claim_complete_since_2018", row)
+        self.assertFalse(row["every_stored_week_has_100_rows"])
 
     def test_network_failure_is_not_marked_done(self):
         def fetcher(url):

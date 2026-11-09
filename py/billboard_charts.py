@@ -160,22 +160,123 @@ def assess_coverage(weeks: list[date], category: str, range_start: date = RANGE_
                 "gap_days": gap_days,
             }
     if not ordered:
-        label = "not_recovered"
+        label = "no_stored_weeks"
     elif category in SEASONAL_CATEGORIES:
-        label = "seasonal"
+        label = "seasonal_stored_weeks"
     elif jumps:
-        label = "unexplained_jump"
+        label = "unexplained_internal_gap"
     elif leading:
-        label = "unknown_before_first_recovered"
+        label = "stored_weeks_start_later"
     else:
-        label = "recovered_from_range_start"
+        label = "contiguous_stored_weeks"
     return {
         "label": label,
         "unexplained_jumps": jumps,
         "seasonal_hiatuses": hiatuses,
         "leading_unrecovered": leading,
-        "claim_complete_since_2018": label == "recovered_from_range_start",
     }
+
+
+def unrecovered_interval_rows(slug: str, weeks: list[date], category: str, state_present: bool) -> list[dict]:
+    """Structured gaps. Dates are inclusive. Notes in the catalog are not a substitute."""
+    if not state_present and weeks:
+        ordered = sorted(weeks)
+        return [
+            {
+                "chart": slug,
+                "interval_start": ordered[0].isoformat(),
+                "interval_end": ordered[-1].isoformat(),
+                "kind": "continuity_uncertified_missing_state",
+                "evidence": "_state.json is absent. Stored week files are recovered pages; continuity is not certified.",
+            }
+        ]
+    coverage = assess_coverage(weeks, category)
+    launch = LAUNCH_NOTES.get(slug, ("", ""))[0]
+    rows = []
+    ordered = sorted(weeks)
+    launch_matches_first = bool(launch and ordered and ordered[0].isoformat() == launch)
+    if launch and ordered and not launch_matches_first:
+        end = ordered[0] - timedelta(days=1)
+        if date.fromisoformat(launch) <= end:
+            rows.append(
+                {
+                    "chart": slug,
+                    "interval_start": launch,
+                    "interval_end": end.isoformat(),
+                    "kind": "not_recovered_after_reported_launch",
+                    "evidence": LAUNCH_NOTES[slug][1],
+                }
+            )
+    elif coverage["leading_unrecovered"] and not launch_matches_first:
+        first = date.fromisoformat(coverage["leading_unrecovered"]["first_recovered"])
+        rows.append(
+            {
+                "chart": slug,
+                "interval_start": coverage["leading_unrecovered"]["range_start"],
+                "interval_end": (first - timedelta(days=1)).isoformat(),
+                "kind": "before_first_stored_week",
+                "evidence": "No earlier printed week is stored. This interval is not a launch date.",
+            }
+        )
+    for jump in coverage["unexplained_jumps"]:
+        start = date.fromisoformat(jump["after"]) + timedelta(days=1)
+        end = date.fromisoformat(jump["next_recovered"]) - timedelta(days=1)
+        kind = "unexplained_internal_gap"
+        evidence = "Stored printed weeks are more than 14 days apart."
+        if slug == "thailand-songs-hotw":
+            kind = "archive_not_recovered"
+            evidence = (
+                "Debut week 2022-02-19 was recovered from Internet Archive capture 20220215211337. "
+                "Live billboard.com dates in this span print 2026-08-01. "
+                "Wayback availability had no snapshot for 2022-03-19, 2022-06-18, 2022-12-17, "
+                "2023-06-17, 2024-02-17, 2025-02-15, or 2026-07-25. "
+                "billboardth.com was not imported: probed Week of 19 Sep 2022 (2022-W38) is a 100-song Billboard Thailand list, "
+                "while Billboard.com Thailand Songs is 25 songs, and the debut week URL on that site returned a 404 page."
+            )
+        rows.append(
+            {
+                "chart": slug,
+                "interval_start": start.isoformat(),
+                "interval_end": end.isoformat(),
+                "kind": kind,
+                "evidence": evidence,
+            }
+        )
+    for gap in coverage["seasonal_hiatuses"]:
+        start = date.fromisoformat(gap["after"]) + timedelta(days=1)
+        end = date.fromisoformat(gap["next_recovered"]) - timedelta(days=1)
+        rows.append(
+            {
+                "chart": slug,
+                "interval_start": start.isoformat(),
+                "interval_end": end.isoformat(),
+                "kind": "seasonal_offseason",
+                "evidence": "Gap between stored holiday or summer issues. Not an archive search.",
+            }
+        )
+    verified = {
+        ("lyricfind-us", "2018-05-19", "2018-06-02"): "2018-05-26",
+        ("lyricfind-global", "2018-05-19", "2018-06-02"): "2018-05-26",
+        ("billboard-argentina-hot-100", "2023-08-12", "2023-08-26"): "2023-08-19",
+        ("billboard-italy-hot-100", "2023-09-16", "2023-09-30"): "2023-09-23",
+        ("the-arabic-hot-100", "2026-02-14", "2026-02-28"): "2026-02-21",
+    }
+    for left, right in zip(sorted(weeks), sorted(weeks)[1:]):
+        key = (slug, left.isoformat(), right.isoformat())
+        if key in verified:
+            rows.append(
+                {
+                    "chart": slug,
+                    "interval_start": verified[key],
+                    "interval_end": verified[key],
+                    "kind": "requested_date_resolved_to_next_stored_week",
+                    "evidence": (
+                        f"On 2026-11-09 the live URL for {verified[key]} printed {right.isoformat()}, "
+                        "not a separate issue and not the chart's latest week."
+                    ),
+                }
+            )
+    return rows
 
 
 @dataclass
@@ -671,9 +772,8 @@ def _closer_issue(session, store, spec, limiter, stop, cursor: date, far: Parsed
 def _apply_coverage(state: dict, spec: ChartSpec, end: date | None) -> None:
     weeks = [date.fromisoformat(value) for value in state.get("weeks") or []]
     coverage = assess_coverage(weeks, spec.category)
-    state["coverage_since_2018"] = coverage["label"]
+    state["recovered_temporal_grid"] = coverage["label"]
     state["unexplained_jumps"] = coverage["unexplained_jumps"]
-    state["claim_complete_since_2018"] = coverage["claim_complete_since_2018"]
     last = max(weeks) if weeks else None
     if last is None:
         if state.get("status") not in {"failed", "skipped"}:
@@ -684,11 +784,11 @@ def _apply_coverage(state: dict, spec: ChartSpec, end: date | None) -> None:
         state["status"] = "incomplete"
         state["error"] = f"stopped at {last.isoformat()} before latest {end.isoformat()}"
         return
-    if coverage["label"] == "unexplained_jump":
+    if coverage["label"] == "unexplained_internal_gap":
         state["status"] = "partial"
         state["error"] = "unexplained forward jump; intervening weeks were not recovered"
         return
-    if coverage["label"] == "unknown_before_first_recovered":
+    if coverage["label"] == "stored_weeks_start_later":
         state["status"] = "partial"
         state["error"] = (
             "weeks before the first recovered issue were not recovered; "
@@ -767,7 +867,7 @@ def scrape_one(
             store.save_state(state)
             store.log(
                 f"{spec.slug} already current through {last_saved.isoformat()} "
-                f"({len(state['weeks'])} weeks, {state['coverage_since_2018']})"
+                f"({len(state['weeks'])} weeks, {state['recovered_temporal_grid']})"
             )
             return state
         store.log(f"{spec.slug} updating {last_saved.isoformat()} -> {end.isoformat()}")
@@ -834,7 +934,7 @@ def scrape_one(
     last = max(state["weeks"]) if state["weeks"] else "-"
     store.log(
         f"{spec.slug} {state['status']} weeks={len(state['weeks'])} "
-        f"coverage={state.get('coverage_since_2018')} last={last} ({state['error']})"
+        f"coverage={state.get('recovered_temporal_grid')} last={last} ({state['error']})"
     )
     return state
 
@@ -1062,6 +1162,7 @@ def export_and_validate(root: Path) -> None:
     weekly.mkdir(parents=True, exist_ok=True)
     catalog_rows = []
     stats = []
+    intervals = []
     total_rows = 0
     combined_path = root / "billboard_weekly_songs.csv.gz"
     combined = gzip.open(combined_path, "wt", encoding="utf-8", newline="")
@@ -1071,13 +1172,13 @@ def export_and_validate(root: Path) -> None:
     seen_slugs = set()
     for slug, name, region, category in SONG_CHARTS:
         seen_slugs.add(slug)
-        catalog_rows.append(_export_chart(cache, weekly, combined_writer, slug, name, region, category, stats))
+        catalog_rows.append(_export_chart(cache, weekly, combined_writer, slug, name, region, category, stats, intervals))
     for slug, name, region, category in PROBE_CANDIDATES:
         state_path = cache / slug / "_state.json"
         if slug in seen_slugs or not state_path.exists():
             continue
         seen_slugs.add(slug)
-        catalog_rows.append(_export_chart(cache, weekly, combined_writer, slug, name, region, category, stats))
+        catalog_rows.append(_export_chart(cache, weekly, combined_writer, slug, name, region, category, stats, intervals))
 
     for slug, name, reason in SKIPPED_CHARTS:
         catalog_rows.append(
@@ -1099,10 +1200,9 @@ def export_and_validate(root: Path) -> None:
                 "notes": "Not a weekly song chart in this collection.",
                 "launch_date": "",
                 "launch_evidence": "",
-                "coverage_since_2018": "not_applicable",
-                "claim_complete_since_2018": False,
+                "recovered_temporal_grid": "not_applicable",
+                "every_stored_week_has_100_rows": False,
                 "public_depth": "",
-                "full_100": False,
                 "depth_note": "",
             }
         )
@@ -1116,6 +1216,12 @@ def export_and_validate(root: Path) -> None:
         writer = csv.DictWriter(handle, fieldnames=list(catalog_rows[0].keys()))
         writer.writeheader()
         writer.writerows(catalog_rows)
+    interval_path = root / "unrecovered_intervals.csv"
+    interval_fields = ["chart", "interval_start", "interval_end", "kind", "evidence"]
+    with interval_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=interval_fields)
+        writer.writeheader()
+        writer.writerows(intervals)
 
     combined_size = combined_path.stat().st_size
     if combined_size > 95 * 1024 * 1024:
@@ -1137,12 +1243,17 @@ def export_and_validate(root: Path) -> None:
     print(f"wrote {catalog_path} and {report_path}")
 
 
-def _export_chart(cache, weekly, combined_writer, slug, name, region, category, stats) -> dict:
+def _export_chart(cache, weekly, combined_writer, slug, name, region, category, stats, intervals=None) -> dict:
     state_path = cache / slug / "_state.json"
-    state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
+    state_present = state_path.exists()
+    state = json.loads(state_path.read_text(encoding="utf-8")) if state_present else {}
     files = _week_files(cache, slug)
-    status = state.get("status") or ("done" if files else "missing")
-    reason = state.get("error") or ""
+    if not state_present and files:
+        status = "partial"
+        reason = "Week files exist but _state.json is missing. Temporal coverage is not certified."
+    else:
+        status = state.get("status") or ("missing" if not files else "partial")
+        reason = state.get("error") or ""
     if not files:
         return {
             "chart": slug,
@@ -1162,10 +1273,9 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
             "notes": "",
             "launch_date": "",
             "launch_evidence": "",
-            "coverage_since_2018": "not_recovered",
-            "claim_complete_since_2018": False,
+            "recovered_temporal_grid": "unknown_no_scrape_state" if (not state_present and files) else "no_stored_weeks",
+            "every_stored_week_has_100_rows": False,
             "public_depth": "",
-            "full_100": False,
             "depth_note": "",
         }
 
@@ -1225,8 +1335,8 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
 
     notes = []
     coverage = assess_coverage(weeks, category)
-    if coverage["label"] != "recovered_from_range_start":
-        notes.append(f"coverage {coverage['label']}")
+    if state_present and coverage["label"] != "contiguous_stored_weeks":
+        notes.append(f"recovered_temporal_grid {coverage['label']}")
     launch_date = LAUNCH_NOTES.get(slug, ("", ""))[0]
     if coverage["leading_unrecovered"]:
         leading = coverage["leading_unrecovered"]
@@ -1264,8 +1374,14 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
     if long_gaps and category not in {"holiday", "summer"}:
         notes.append(f"{len(long_gaps)} gaps longer than 14 days.")
 
-    if coverage["label"] in {"unexplained_jump", "unknown_before_first_recovered"}:
+    if not state_present:
+        grid = "unknown_no_scrape_state"
         status = "partial"
+        notes.append("Scrape state file is missing, so the stored dates are not certified as a temporal grid.")
+    else:
+        grid = coverage["label"]
+        if grid in {"unexplained_internal_gap", "stored_weeks_start_later"}:
+            status = "partial"
     stats.append(
         {
             "chart": slug,
@@ -1273,7 +1389,7 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
             "region": region,
             "category": category,
             "status": status,
-            "coverage": coverage["label"],
+            "coverage": grid,
             "weeks": weeks,
             "counts": counts,
             "gaps": gaps,
@@ -1283,6 +1399,8 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
             "notes": notes,
         }
     )
+    if intervals is not None:
+        intervals.extend(unrecovered_interval_rows(slug, weeks, category, state_present))
     return {
         "chart": slug,
         "chart_name": chart_name,
@@ -1301,10 +1419,9 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
         "notes": " ".join(notes),
         "launch_date": LAUNCH_NOTES.get(slug, ("", ""))[0],
         "launch_evidence": LAUNCH_NOTES.get(slug, ("", ""))[1],
-        "coverage_since_2018": coverage["label"],
-        "claim_complete_since_2018": coverage["claim_complete_since_2018"],
+        "recovered_temporal_grid": grid,
+        "every_stored_week_has_100_rows": full_100,
         "public_depth": median_rows if median_rows is not None else "",
-        "full_100": full_100,
         "depth_note": depth_note,
     }
 
@@ -1368,10 +1485,13 @@ def _validation_report(root: Path, stats: list[dict], catalog_rows: list[dict], 
     if not problem_lines:
         problem_lines.append("- No rank-hole or duplicate-rank failures were recorded in this pass.")
     problem_lines.append(
-        "- `coverage_since_2018=recovered_from_range_start` means the recovered printed weeks start by 2018-01-17 and have no internal gap over 14 days. It does not mean an external index was checked."
+        "- `recovered_temporal_grid` is only about stored printed dates, and only when `_state.json` exists. `contiguous_stored_weeks` means the earliest stored printed week is 2018-01-03 or at most 14 days later, and every later step is at most 14 days. It is not a census of issues Billboard published, and it says nothing about ranking depth."
     )
     problem_lines.append(
-        "- `unknown_before_first_recovered` means the live site did not yield earlier issues. The first printed week is not a launch date unless `launch_evidence` says so."
+        "- `stored_weeks_start_later` means the first stored printed week is more than 14 days after 2018-01-03. That date is not a launch date unless `launch_evidence` is set. The open interval is in `unrecovered_intervals.csv`."
+    )
+    problem_lines.append(
+        "- `unknown_no_scrape_state` means week files exist and `_state.json` does not. Those files are recovered pages. Their continuity is not certified."
     )
     problem_lines.append(
         "- `source_url` in the CSV is the Billboard URL for the printed week. The Nov 9 scrape did not retain the request URL, final redirect URL, or HTTP timestamp for those files. Do not read `source_url` as a stored fetch log. Exceptions are recorded in `resolution_checks.json` and the Thailand 2022-02-19 cache file."
@@ -1415,12 +1535,12 @@ def _validation_report(root: Path, stats: list[dict], catalog_rows: list[dict], 
             "A prefix CDX listing of every Thailand week timed out. The span from 26 Feb 2022 through 25 Jul 2026 was not recovered.",
             "Both Vietnam charts launch 14 Jan 2022 according to Billboard's 11 Jan 2022 chart-beat article.",
             "Requesting 2022-01-14 on the live site prints 31 May 2025 (Hot 100) and 28 Jun 2025 (Top Vietnamese Songs), which is where the recovered live series starts.",
-            "Wayback availability for those 2022 URLs, and for slug variants vietnam-hot-100, returned no snapshot. The 2022-to-2025 Vietnam issues were not recovered.",
+            "Wayback availability for https://billboardvn.vn/billboard-vietnam-hot-100/ pointed at capture 20231003004850. That id_ snapshot was a 793-byte shell with no chart table. A prefix CDX query timed out after 18 seconds. No 2022-2023 Vietnam list was recovered. Wikipedia's January 2024-May 2025 suspension is secondary and is not recorded as an official hiatus.",
             "On 2026-11-09 the undated Top Vietnamese Songs page printed 31 Oct 2026, one week past the earlier scrape. That week was fetched the same day and added.",
             "The same day's undated pages matched the saved last week for Hot 100 (7 Nov), Japan (31 Oct, 25 rows), Official U.K. (14 Nov, 20 rows), Arabic (31 Oct, 25 rows), both Philippines charts (17 Oct, 25 rows), Colombia (24 Oct, 25 rows), and Vietnam Hot 100 (31 Oct, 25 rows).",
             "WARM Global Dance Radio's live URL for 1 Jun 2024 prints 14 Mar 2026. That first recovered week is not a documented launch.",
             "Single missing issue dates were re-requested and resolved to the next saved week, not to the latest issue: LyricFind 26 May 2018, Argentina 19 Aug 2023, Italy 23 Sep 2023, Arabic 21 Feb 2026.",
-            "`full_100` is true only when every recovered week has 100 rows.",
+            "`every_stored_week_has_100_rows` is true only when every stored week has 100 parsed rows. It is not a census of a 100-deep chart.",
             "A 25-row Hits of the World chart, a 25-row Japan Hot 100 page, and a 20-row Official U.K. page are not full 100s.",
             "Dance Club Songs: every recovered week has 55 rows, 118 weeks, 2018-01-03 through 2020-03-28. Bubbling Under: every recovered week has 25 rows, 463 weeks. Neither was re-checked against a printed magazine in this pass.",
             "Those two counts describe the saved pages. They were not re-checked against a printed magazine.",
@@ -1432,7 +1552,7 @@ def _validation_report(root: Path, stats: list[dict], catalog_rows: list[dict], 
             "",
             "## Included charts",
             "",
-            "| chart | region | weeks | first recovered | last recovered | rows | public depth | full 100 | coverage |",
+            "| chart | region | weeks | first recovered | last recovered | rows | public depth | every week has 100 rows | temporal grid |",
             "| --- | --- | ---: | --- | --- | ---: | ---: | --- | --- |",
         ]
     )
@@ -1441,8 +1561,8 @@ def _validation_report(root: Path, stats: list[dict], catalog_rows: list[dict], 
             continue
         lines.append(
             f"| {row['chart']} | {row['region']} | {row['weeks']} | {row['first_week']} | "
-            f"{row['last_week']} | {row['rows']} | {row['public_depth']} | {row['full_100']} | "
-            f"{row['coverage_since_2018']} |"
+            f"{row['last_week']} | {row['rows']} | {row['public_depth']} | {row['every_stored_week_has_100_rows']} | "
+            f"{row['recovered_temporal_grid']} |"
         )
     lines.extend(["", "## Skipped probe or empty charts", ""])
     lines.append(
