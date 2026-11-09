@@ -1,6 +1,8 @@
 # Weekly Billboard song charts
 
-The dataset in `data/billboard/` is every public weekly **song** chart on Billboard from the first chart week of 2018 (`2018-01-03`) through the latest week published for that chart. The Hot 100 has 100 positions. Other charts are stored at whatever length Billboard prints on the public page (airplay charts are often 20–50, Hits of the World is usually 25, the Global 200 is 200).
+The dataset in `data/billboard/` is the weekly **song** chart issues this collector could read from public pages, plus one Thailand week recovered from the Internet Archive. A chart whose first recovered week is after 2018-01-03 is not claimed to have launched on that week. Billboard sometimes answers an old URL with a much later issue. `catalog.csv` column `coverage_since_2018` records that distinction. `full_100` is true only when every recovered week has 100 rows. Japan Hot 100 (25), the Official U.K. Singles Chart (20), and the 25-row Hits of the World pages are not full 100s.
+
+`source_url` is the Billboard URL for the printed week. The original scrape did not keep request URLs or fetch timestamps. Those fields are stored only when a later fetch recorded them (see `data/billboard/resolution_checks.json` and the Thailand 2022-02-19 note in `data/billboard/provenance.json`).
 
 Album charts, artist charts, songwriter/producer charts, and all-time or year-end lists are not in the song files. They are listed as skipped in `data/billboard/catalog.csv`.
 
@@ -33,7 +35,9 @@ python py/billboard_charts.py export
 | `data/billboard/weekly/<slug>.csv.gz` | One chart |
 | `data/billboard/billboard_weekly_songs.csv.gz` | All charts, if the gzip is small enough for git |
 | `data/billboard/catalog.csv` | Included charts, date ranges, row counts, and skipped charts with reasons |
-| `data/billboard/VALIDATION.md` | Week counts, gaps, duplicate checks, and spot checks |
+| `data/billboard/VALIDATION.md` | Week counts, coverage labels, depth flags, and spot checks |
+| `data/billboard/provenance.json` | Archive recovery and live resolution checks, with real fetch times |
+| `data/billboard/resolution_checks.json` | The live-page checks alone |
 | `data/billboard/cache/` | Local resume cache, not committed |
 
 CSV columns: `chart`, `region`, `category`, `chart_name`, `week`, `rank`, `title`, `artist`, `last_week`, `peak_position`, `weeks_on_chart`, `weeks_at_number_one`, `is_new`, `is_reentry`, `source_url`.

@@ -146,6 +146,28 @@ SONG_CHARTS = [
 ]
 
 # Archived or easily-missed song charts. Confirmed with one request before scraping.
+# Independent launch notes. These are not inferred from the oldest Billboard URL
+# that still resolves. Empty means this pass did not establish a launch date.
+LAUNCH_NOTES = {
+    "billboard-vietnam-hot-100-songs": (
+        "2022-01-14",
+        "Billboard chart-beat article, 11 Jan 2022: Billboard Vietnam Hot 100 and "
+        "Billboard Vietnam Top Vietnamese Songs launch Friday 14 Jan 2022. "
+        "https://www.billboard.com/music/chart-beat/billboard-vietnam-charts-1235016406/",
+    ),
+    "billboard-vietnam-top-vietnamese-songs": (
+        "2022-01-14",
+        "Same Billboard article as the Vietnam Hot 100: both charts launch 14 Jan 2022. "
+        "https://www.billboard.com/music/chart-beat/billboard-vietnam-charts-1235016406/",
+    ),
+    "thailand-songs-hotw": (
+        "2022-02-19",
+        "Workpoint Today, 18 Feb 2022: Thailand Songs debuts the week of 19 Feb 2022 "
+        "as a 25-song chart, No. 1 Tilly Birds, 'Until Then'. "
+        "https://www.workpointtoday.com/billboard-thailand-songs-1",
+    ),
+}
+
 # slug, fallback name, region, category
 PROBE_CANDIDATES = [
     ("tiktok-billboard-top-50", "TikTok Billboard Top 50", "United States", "all-genre"),

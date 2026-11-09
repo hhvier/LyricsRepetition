@@ -1,6 +1,6 @@
 # LyricsRepetition
 
-Weekly Billboard song charts from the first chart week of 2018 through the latest published week are in `data/billboard/`. See [docs/billboard_charts.md](docs/billboard_charts.md) for the chart list, how partial public lists are handled, and how to resume or update the scrape (`python py/billboard_charts.py scrape`).
+Recovered weekly Billboard song charts are in `data/billboard/`. Coverage starts at the first printed week the collector could actually read, which is not the same thing as every chart since 2018. See [docs/billboard_charts.md](docs/billboard_charts.md) for partial public lists, archive gaps, and how to resume (`python py/billboard_charts.py scrape`).
 
 There are three folders in this repository.
 
