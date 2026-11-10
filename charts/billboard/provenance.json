@@ -575,5 +575,17 @@
         "top": "Heat Waves / Glass Animals"
       }
     ]
+  },
+  "adult_contemporary_2010_01_02": {
+    "printed_week": "2010-01-02",
+    "heading": "Week of January 2, 2010",
+    "rows": 30,
+    "ranks": "1 through 30",
+    "number_one_title": "You Belong With Me",
+    "number_one_artist": "Taylor Swift",
+    "requested_url": "https://www.billboard.com/charts/adult-contemporary/2010-01-02/",
+    "final_url": "https://www.billboard.com/charts/adult-contemporary/2010-01-02/",
+    "fetched_at": "2026-11-10T12:43:02Z",
+    "stored": true
   }
 }

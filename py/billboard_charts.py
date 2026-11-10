@@ -549,6 +549,33 @@ def fetch_html(session: requests.Session, url: str, limiter: RateLimiter, stop: 
     raise FetchError("network", last_error)
 
 
+def requested_issue_date(url: str) -> date | None:
+    """Return the issue date in a chart URL, or None for the undated latest page."""
+    if not url:
+        return None
+    match = re.search(r"/(\d{4}-\d{2}-\d{2})/?$", url)
+    if match is None:
+        return None
+    try:
+        return date.fromisoformat(match.group(1))
+    except ValueError:
+        return None
+
+
+def issue_matches_request(parsed: ParsedChart) -> bool:
+    """True when a dated URL prints that date.
+
+    The undated latest URL names no issue, so the printed week stands.
+    A dated URL that prints another week is a redirect, not a recovered issue.
+    """
+    if parsed.week is None:
+        return False
+    requested = requested_issue_date(parsed.requested_url)
+    if requested is None:
+        return True
+    return parsed.week == requested
+
+
 class Store:
     def __init__(self, root: Path):
         self.root = root
@@ -591,9 +618,17 @@ class Store:
         temporary.write_text(json.dumps(state, indent=2), encoding="utf-8")
         temporary.replace(path)
 
-    def save_week(self, spec: ChartSpec, parsed: ParsedChart) -> None:
-        if parsed.week is None:
-            return
+    def save_week(self, spec: ChartSpec, parsed: ParsedChart) -> bool:
+        """Write one issue. Refuse a page whose printed week is not the requested date.
+
+        The undated latest URL has no issue date, so its printed week is stored.
+        A dated URL that prints a different week is not a recovered issue and is
+        not written under either date.
+        """
+        if parsed.week is None or not parsed.rows:
+            return False
+        if not issue_matches_request(parsed):
+            return False
         list_key = [
             [
                 row.get("rank"),
@@ -625,6 +660,7 @@ class Store:
         temporary = path.with_suffix(".tmp")
         temporary.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
         temporary.replace(path)
+        return True
 
     def has_week(self, slug: str, week: date) -> bool:
         return self.week_path(slug, week).exists()
@@ -682,8 +718,11 @@ def load_parsed(session, url, limiter, stop, spec_name: str) -> ParsedChart:
 
 
 def remember_week(store: Store, spec: ChartSpec, state: dict, parsed: ParsedChart) -> bool:
-    """Persist a chart week. Returns True when the week was not already stored."""
-    if parsed.week is None or not parsed.rows:
+    """Persist a chart week. Returns True when the week was not already stored.
+
+    A page whose printed week differs from the requested date is not stored.
+    """
+    if parsed.week is None or not parsed.rows or not issue_matches_request(parsed):
         return False
     iso = parsed.week.isoformat()
     fresh = iso not in state["weeks"]
@@ -708,6 +747,39 @@ def _fetch_chart(session, store, spec, limiter, stop, probe: date, fetcher):
     if parsed.requested_url == "":
         parsed.requested_url = url
     return parsed
+
+
+def _confirmed_issue(session, store, spec, limiter, stop, parsed: ParsedChart, fetcher):
+    """Return ``parsed`` only when a request for its printed date prints that date.
+
+    A probe at cursor+1 can reveal the next Saturday. That response is not saved.
+    The printed date is requested on its own, and stored only if it matches.
+    """
+    if parsed.week is None or not parsed.rows:
+        return None
+    if issue_matches_request(parsed):
+        return parsed
+    try:
+        confirmed = _fetch_chart(session, store, spec, limiter, stop, parsed.week, fetcher)
+    except FetchError as exc:
+        if exc.kind in {"blocked", "stopped"}:
+            raise
+        store.log(f"{spec.slug} confirm {parsed.week} failed ({exc.kind}): {exc}")
+        return None
+    if confirmed.week == parsed.week and confirmed.rows and issue_matches_request(confirmed):
+        return confirmed
+    return None
+
+
+def _note_unrecovered(state: dict, parsed: ParsedChart, after: date) -> None:
+    state.setdefault("unrecovered_requests", []).append(
+        {
+            "after": after.isoformat(),
+            "requested_url": parsed.requested_url,
+            "printed_week": parsed.week.isoformat() if parsed.week else None,
+            "reason": "printed week differs from the requested date; not stored",
+        }
+    )
 
 
 def next_published_week(
@@ -747,14 +819,25 @@ def next_published_week(
             continue
         decision = classify_advance(cursor, parsed.week, spec.category)
         if decision in {"accept", "hiatus"}:
-            return parsed, decision
+            confirmed = _confirmed_issue(session, store, spec, limiter, stop, parsed, fetcher)
+            if confirmed is not None:
+                return confirmed, decision
+            store.log(
+                f"{spec.slug} probe {probe.isoformat()} printed "
+                f"{parsed.week.isoformat() if parsed.week else 'nothing'} "
+                "and that issue did not confirm; not stored"
+            )
+            continue
         if decision == "unexplained" and parsed.week is not None:
             closer = _closer_issue(session, store, spec, limiter, stop, cursor, parsed, fetcher)
             if closer is not None:
                 closer_decision = classify_advance(cursor, closer.week, spec.category)
                 if closer_decision in {"accept", "hiatus"}:
-                    return closer, closer_decision
+                    confirmed = _confirmed_issue(session, store, spec, limiter, stop, closer, fetcher)
+                    if confirmed is not None:
+                        return confirmed, closer_decision
                 parsed = closer
+            # A far redirect is evidence of a hole. It is not a week to store.
             return parsed, "unexplained"
     return parsed, "reject"
 
@@ -927,20 +1010,24 @@ def scrape_one(
         )
         if decision == "reject" or parsed is None or parsed.week is None or parsed.week <= cursor:
             break
-        if decision == "unexplained":
+        if decision == "unexplained" or not issue_matches_request(parsed):
+            _note_unrecovered(state, parsed, cursor)
             state.setdefault("jump_log", []).append(
                 {
                     "after": cursor.isoformat(),
-                    "resolved_week": parsed.week.isoformat(),
+                    "resolved_week": parsed.week.isoformat() if parsed.week else None,
                     "requested_url": parsed.requested_url,
                     "final_url": parsed.final_url,
                     "fetched_at": parsed.fetched_at,
+                    "stored": False,
                 }
             )
             store.log(
-                f"{spec.slug} unexplained jump after {cursor.isoformat()} "
-                f"to printed {parsed.week.isoformat()}"
+                f"{spec.slug} unrecovered after {cursor.isoformat()}: "
+                f"requested {parsed.requested_url} printed "
+                f"{parsed.week.isoformat() if parsed.week else 'nothing'}"
             )
+            break
         fresh = remember_week(store, spec, state, parsed)
         cursor = parsed.week
         if cursor > end:
@@ -964,23 +1051,39 @@ def scrape_one(
 
 
 def _first_week_in_range(session, store, spec, limiter, stop, end: date, fetcher=None) -> ParsedChart | None:
-    probe = RANGE_START
-    best: ParsedChart | None = None
-    for _ in range(6):
-        parsed = _fetch_chart(session, store, spec, limiter, stop, probe, fetcher)
-        if parsed.week is None or not parsed.rows:
-            return best
-        if RANGE_START <= parsed.week <= end:
-            return parsed
-        if parsed.week < RANGE_START:
-            probe = parsed.week + timedelta(days=1)
+    """Find the first issue at or after ``RANGE_START``.
+
+    Probes are ``RANGE_START`` and then 1, 7, and 14 days later, the same
+    offsets ``next_published_week`` uses. A page is returned only when its
+    printed week is within those 14 days of the probe, not after ``end``, and
+    a request for that printed date prints it.
+
+    An earlier version kept a printed week up to 14 days after ``end`` even
+    when the probe was 2018-01-03. That ``end + 14`` window is not a probe
+    offset. A jump from the 2018 probe to a much later issue is left
+    unrecovered instead of being stored as the first week.
+    """
+    for offset in (0, 1, 7, 14):
+        if stop.is_set():
+            raise FetchError("stopped", "stop requested")
+        probe = RANGE_START + timedelta(days=offset)
+        try:
+            parsed = _fetch_chart(session, store, spec, limiter, stop, probe, fetcher)
+        except FetchError as exc:
+            if exc.kind in {"blocked", "stopped"}:
+                raise
+            store.log(f"{spec.slug} first-week probe {probe} failed ({exc.kind}): {exc}")
             continue
-        # Jumped past `end`. Keep the earliest in-range page if we already saw one.
-        if best is None or (parsed.week and best.week and parsed.week < best.week):
-            if parsed.week <= end + timedelta(days=14):
-                best = parsed
-        return best
-    return best
+        if parsed.week is None or not parsed.rows:
+            continue
+        if parsed.week < probe or parsed.week < RANGE_START or parsed.week > end:
+            continue
+        if (parsed.week - probe).days > MAX_NEXT_ISSUE_DAYS:
+            continue
+        confirmed = _confirmed_issue(session, store, spec, limiter, stop, parsed, fetcher)
+        if confirmed is not None and RANGE_START <= confirmed.week <= end:
+            return confirmed
+    return None
 
 
 def probe_extra_charts(store: Store, limiter: RateLimiter, stop: threading.Event) -> list[ChartSpec]:
@@ -1252,11 +1355,11 @@ def export_and_validate(root: Path) -> None:
         combined_path.unlink()
         combined_note = (
             f"The combined CSV was {combined_size / 1e6:.1f} MB gzipped, over the git file limit, "
-            "so it was left out. Use the per-chart files in data/billboard/weekly/."
+            "so it was left out. Use the per-chart files in charts/billboard/weekly/."
         )
     else:
         combined_note = (
-            f"Combined file: data/billboard/billboard_weekly_songs.csv.gz "
+            f"Combined file: charts/billboard/billboard_weekly_songs.csv.gz "
             f"({combined_size / 1e6:.1f} MB, {total_rows} rows)."
         )
 
@@ -1372,6 +1475,9 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
             f"Launch evidence dates this chart at {launch_date}. "
             "Earlier weeks are outside its life, not a missing archive."
         )
+    if slug == "thailand-songs-hotw" and coverage["unexplained_jumps"]:
+        # Same label as the interval row: the hole is an archive miss, not an unlabeled jump.
+        coverage = {**coverage, "label": "archive_not_recovered"}
     if state_present and coverage["label"] != "contiguous_stored_weeks":
         notes.append(f"recovered_temporal_grid {coverage['label']}")
     if coverage["leading_unrecovered"]:
@@ -1416,7 +1522,7 @@ def _export_chart(cache, weekly, combined_writer, slug, name, region, category, 
         notes.append("Scrape state file is missing, so the stored dates are not certified as a temporal grid.")
     else:
         grid = coverage["label"]
-        if grid in {"unexplained_internal_gap", "stored_weeks_start_later"}:
+        if grid in {"unexplained_internal_gap", "stored_weeks_start_later", "archive_not_recovered"}:
             status = "partial"
         elif grid == "contiguous_stored_weeks" and launch_date and weeks and weeks[0].isoformat() == launch_date:
             status = "done"
@@ -1616,7 +1722,7 @@ def _validation_report(root: Path, stats: list[dict], catalog_rows: list[dict], 
 
 def build_parser() -> argparse.ArgumentParser:
     common = argparse.ArgumentParser(add_help=False)
-    common.add_argument("--data-dir", default="data/billboard", help="Dataset directory")
+    common.add_argument("--data-dir", default="charts/billboard", help="Dataset directory")
     parser = argparse.ArgumentParser(description="Download weekly Billboard song charts.", parents=[common])
     sub = parser.add_subparsers(dest="command", required=True)
 

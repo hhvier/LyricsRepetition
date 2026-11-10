@@ -1,6 +1,6 @@
 # Weekly Billboard song charts
 
-1,444,086 chart positions from 120 Billboard song charts, one row per song per week. The 2018-on weeks were read from Billboard's public chart pages on 2026-11-09. On 2026-11-10, three charts gained earlier weeks whose printed date matched the requested date: Canadian Hot 100 from 2007-03-31 (56,200 rows), the Official U.K. Singles Chart from 2011-01-29 (4,959 rows) and Adult Contemporary from 2010-01-09 (12,510 rows). The U.K. page lists 10 positions through 2015-06-06, 9 on 2011-12-31, and 20 from 2015-06-13. Album, artist and credit charts are not included.
+1,444,116 chart positions from 120 Billboard song charts, one row per song per week. The 2018-on weeks were read from Billboard's public chart pages on 2026-11-09. On 2026-11-10, three charts gained earlier weeks whose printed date matched the requested date: Canadian Hot 100 from 2007-03-31 (56,200 rows), the Official U.K. Singles Chart from 2011-01-29 (4,959 rows) and Adult Contemporary from 2010-01-02 (12,540 rows). The U.K. page lists 10 positions through 2015-06-06, 9 on 2011-12-31, and 20 from 2015-06-13. Its `last_week`, `weeks_on_chart`, and new-entry fields follow that published list, not the full Official Charts 100, and they change meaning when the depth goes from 10 to 20. Album, artist and credit charts are not included.
 
 Time gaps, including the history before 2018 that is missing, are listed in [`GAPS.md`](../../GAPS.md).
 

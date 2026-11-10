@@ -18,7 +18,9 @@ from billboard_charts import (  # noqa: E402
     _cached_chart,
     assess_coverage,
     classify_advance,
+    issue_matches_request,
     next_published_week,
+    remember_week,
     scrape_one,
 )
 
@@ -136,11 +138,11 @@ class WalkBehaviorTest(unittest.TestCase):
             return entry(week)
 
         state = self._run(fetcher)
-        self.assertEqual(state["status"], "partial")
-        self.assertEqual(state["recovered_temporal_grid"], "stored_weeks_start_later")
+        self.assertEqual(state["status"], "skipped")
         self.assertNotIn("2022-02-19", state["weeks"])
-        self.assertIn("2026-08-01", state["weeks"])
-        self.assertIn("2026-11-07", state["weeks"])
+        self.assertNotIn("2026-08-01", state["weeks"])
+        self.assertNotIn("2026-11-07", state["weeks"])
+        self.assertFalse(self.store.has_week(self.spec.slug, date(2026, 8, 1)))
         self.assertTrue(all("2022-02-19" not in url for url in calls))
 
     def test_internal_redirect_is_an_unexplained_jump(self):
@@ -161,12 +163,14 @@ class WalkBehaviorTest(unittest.TestCase):
             return entry(week)
 
         state = self._run(fetcher)
-        self.assertEqual(state["recovered_temporal_grid"], "unexplained_internal_gap")
-        self.assertEqual(state["status"], "partial")
+        self.assertEqual(state["status"], "incomplete")
+        self.assertNotIn("2026-08-01", state["weeks"])
         self.assertNotIn("2022-03-05", state["weeks"])
-        self.assertTrue(state["unexplained_jumps"])
+        self.assertFalse(self.store.has_week(self.spec.slug, date(2026, 8, 1)))
         self.assertEqual(state["jump_log"][0]["after"], "2022-02-19")
         self.assertEqual(state["jump_log"][0]["resolved_week"], "2026-08-01")
+        self.assertFalse(state["jump_log"][0]["stored"])
+        self.assertTrue(state["unrecovered_requests"])
 
     def test_resume_does_not_refetch_cached_weeks(self):
         calls = []
@@ -242,6 +246,46 @@ class WalkBehaviorTest(unittest.TestCase):
             encoding="utf-8",
         )
         self.assertIsNone(_cached_chart(self.store, self.spec.slug, date(2018, 1, 13)))
+
+    def test_mismatched_print_is_not_stored(self):
+        parsed = entry(date(2026, 8, 1))
+        parsed.requested_url = "https://www.billboard.com/charts/sample-chart/2022-02-19/"
+        state = {"slug": self.spec.slug, "weeks": [], "error": ""}
+        self.assertFalse(issue_matches_request(parsed))
+        self.assertFalse(remember_week(self.store, self.spec, state, parsed))
+        self.assertEqual(state["weeks"], [])
+        self.assertFalse(self.store.has_week(self.spec.slug, date(2026, 8, 1)))
+        self.assertFalse(self.store.has_week(self.spec.slug, date(2022, 2, 19)))
+
+    def test_date_chained_walk_confirms_the_printed_saturday(self):
+        self.store.save_week(self.spec, entry(date(2018, 1, 6)))
+        # The saved file has no requested_url. Give it one so a later cache read matches.
+        saved = self.store.week_path(self.spec.slug, date(2018, 1, 6))
+        payload = __import__("json").loads(saved.read_text())
+        payload["requested_url"] = "https://www.billboard.com/charts/sample-chart/2018-01-06/"
+        saved.write_text(__import__("json").dumps(payload))
+        state = self.store.load_state(self.spec.slug)
+        state["weeks"] = ["2018-01-06"]
+        self.store.save_state(state)
+
+        def fetcher(url):
+            if "/20" not in url:
+                return entry(date(2018, 1, 20))
+            requested = date.fromisoformat(url.rstrip("/").split("/")[-1])
+            if requested == date(2018, 1, 7):
+                return entry(date(2018, 1, 13))
+            if requested == date(2018, 1, 13):
+                return entry(date(2018, 1, 13))
+            if requested == date(2018, 1, 14):
+                return entry(date(2018, 1, 20))
+            if requested == date(2018, 1, 20):
+                return entry(date(2018, 1, 20))
+            return entry(requested if requested.weekday() == 5 else date(2018, 1, 20))
+
+        state = self._run(fetcher)
+        self.assertEqual(state["status"], "done")
+        self.assertEqual(state["weeks"], ["2018-01-06", "2018-01-13", "2018-01-20"])
+        self.assertTrue(self.store.has_week(self.spec.slug, date(2018, 1, 13)))
 
     def test_next_week_does_not_treat_a_far_redirect_as_the_next_issue(self):
         def fetcher(url):
