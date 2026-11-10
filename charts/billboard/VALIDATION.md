@@ -1,9 +1,11 @@
 # Billboard weekly chart validation
 
+This is the collector's report as generated; only file paths were updated when the files moved to charts/billboard/. Verification flags are in verification.csv.
+
 Generated 2026-11-09T18:49:11+00:00.
 Song-chart rows: 1370417.
 These are recovered printed weeks, not a claim that every Billboard song chart since 2018 was collected.
-Combined file: data/billboard/billboard_weekly_songs.csv.gz (16.9 MB, 1370417 rows).
+Combined file: charts/billboard/billboard_weekly_songs.csv.gz (16.9 MB, 1370417 rows).
 
 ## Coverage
 
@@ -95,7 +97,7 @@ Duplicate-rank weeks: 0. Weeks with a hole in 1..max rank: 0. Rank uniqueness is
 - `recovered_temporal_grid` is only about stored printed dates, and only when `_state.json` exists. `contiguous_stored_weeks` means the earliest stored printed week is 2018-01-03 or at most 14 days later, and every later step is at most 14 days. It is not a census of issues Billboard published, and it says nothing about ranking depth.
 - `stored_weeks_start_later` means the first stored printed week is more than 14 days after 2018-01-03. That date is not a launch date unless `launch_evidence` is set. The open interval is in `unrecovered_intervals.csv`.
 - `unknown_no_scrape_state` means week files exist and `_state.json` does not. Those files are recovered pages. Their continuity is not certified.
-- `source_url` in the CSV is the Billboard URL for the printed week. The Nov 9 scrape did not retain the request URL, final redirect URL, or HTTP timestamp for those files. Do not read `source_url` as a stored fetch log. Exceptions are recorded in `resolution_checks.json` and the Thailand 2022-02-19 cache file.
+- `source_url` in the CSV is the Billboard URL for the printed week. The Nov 9 scrape did not retain the request URL, final redirect URL, or HTTP timestamp for those files. Do not read `source_url` as a stored fetch log. Exceptions are recorded in `provenance.json (live_resolution_checks)` and the Thailand 2022-02-19 cache file.
 
 Thailand Songs launch evidence is the week of 19 Feb 2022 (Workpoint Today, 18 Feb 2022).
 The live URL for 2022-02-19 currently prints 1 Aug 2026, so the live site is not an archive of that chart.

@@ -1,8 +1,0 @@
-# Local scrape cache and logs. The published dataset is data/billboard/weekly.
-data/billboard/cache/
-data/billboard/scrape.log
-data/billboard/progress.json
-__pycache__/
-*.pyc
-.DS_Store
-.venv/
