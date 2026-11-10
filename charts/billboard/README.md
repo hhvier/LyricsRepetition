@@ -1,6 +1,6 @@
-# Weekly Billboard song charts, 2018 on
+# Weekly Billboard song charts
 
-1,370,417 chart positions from 120 Billboard song charts, one row per song per week, for chart weeks from 2018-01-03 to 2026-11-14. They were read from Billboard's public chart pages on 2026-11-09. Album, artist and credit charts are not included.
+1,444,116 chart positions from 120 Billboard song charts, one row per song per week. The 2018-on weeks were read from Billboard's public chart pages on 2026-11-09. On 2026-11-10, three charts gained earlier weeks whose printed date matched the requested date: Canadian Hot 100 from 2007-03-31 (56,200 rows), the Official U.K. Singles Chart from 2011-01-29 (4,959 rows) and Adult Contemporary from 2010-01-02 (12,540 rows). The U.K. page lists 10 positions through 2015-06-06, 9 on 2011-12-31, and 20 from 2015-06-13. Its `last_week`, `weeks_on_chart`, and new-entry fields follow that published list, not the full Official Charts 100, and they change meaning when the depth goes from 10 to 20. Album, artist and credit charts are not included.
 
 Time gaps, including the history before 2018 that is missing, are listed in [`GAPS.md`](../../GAPS.md).
 
@@ -8,7 +8,7 @@ Time gaps, including the history before 2018 that is missing, are listed in [`GA
 
 | File | Contents |
 | --- | --- |
-| `billboard_weekly_songs.csv.gz` | All positions (16.9 MB) |
+| `billboard_weekly_songs.csv.gz` | All positions |
 | `verification.csv` | Which charts were checked, against what, and which weeks are flagged |
 | `catalog.csv` | Every chart considered: included charts with spans and depth, and skipped ones with the reason |
 | `unrecovered_intervals.csv` | Open periods per chart, with evidence |
@@ -25,7 +25,7 @@ Columns: `chart`, `region`, `category`, `chart_name`, `week`, `rank`, `title`, `
 | --- | ---: | --- |
 | `verified` | 1 | Hot 100, compared with [mhollingshead/billboard-hot-100](https://github.com/mhollingshead/billboard-hot-100) for every week: 99.88% of 46,200 positions are the same song |
 | `verified_2018_only` | 7 | Hot Country, Hot R&B/Hip-Hop, Hot Latin, Pop Airplay, Hot Rock & Alternative, Hot Dance/Electronic and Japan Hot 100, compared with [pdp2600/chartscraper](https://github.com/pdp2600/chartscraper) for 2018: 98.3% to 100% the same. Weeks from 2019 on have no outside check |
-| `unverified` | 112 | No outside source was available |
+| `unverified` | 112 | No outside source was available. This includes the pre-2018 weeks of Canadian Hot 100, the U.K. chart and Adult Contemporary |
 
 Every chart also has an internal check: a row's printed `last_week` should equal the song's rank in the stored week before, wherever we hold that position. All 120 charts agree on 99.4% to 100% of those rows. That shows the weeks are consistent with each other, but it can't catch a wrong chart or a wrong date applied to every week.
 
@@ -38,4 +38,4 @@ Every chart also has an internal check: a row's printed `last_week` should equal
 
 ## Where it came from
 
-[Pull request #1](https://github.com/hhvier/LyricsRepetition/pull/1) collected these files. The collector's code is not part of this merge; it remains in commit `4de0808` on the `cursor/billboard-weekly-charts-2bc0` branch.
+[Pull request #1](https://github.com/hhvier/LyricsRepetition/pull/1) collected the 2018-on files. [Pull request #2](https://github.com/hhvier/LyricsRepetition/pull/2) added the pre-2018 weeks and the launch checks. The collector's code is not part of either merge; it remains in commit `4de0808` on `cursor/billboard-weekly-charts-2bc0` and commit `20bdae6` on `cursor/billboard-gap-fill-2bc0`.

@@ -1,14 +1,10 @@
 chart,interval_start,interval_end,kind,evidence
-hot-alternative-songs,2018-01-03,2020-06-12,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-alternative-streaming-songs,2018-01-03,2020-06-12,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hot-hard-rock-songs,2018-01-03,2020-06-12,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hard-rock-streaming-songs,2018-01-03,2020-06-12,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hot-regional-mexican-songs,2018-01-03,2025-04-11,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hot-latin-pop-songs,2018-01-03,2025-04-11,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hot-tropical-songs,2018-01-03,2025-04-11,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hot-latin-rhythm-songs,2018-01-03,2025-04-11,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hot-dance-pop-songs,2018-01-03,2025-01-17,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-warm-global-dance-radio,2018-01-03,2026-03-13,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
+hot-regional-mexican-songs,2018-01-03,2025-04-11,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2025-04-05 printed 2025-04-12. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+hot-latin-pop-songs,2018-01-03,2025-04-11,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2025-04-05 printed 2025-04-12. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+hot-tropical-songs,2018-01-03,2025-04-11,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2025-04-05 printed 2025-04-12. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+hot-latin-rhythm-songs,2018-01-03,2025-04-11,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2025-04-05 printed 2025-04-12. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+hot-dance-pop-songs,2018-01-03,2025-01-17,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2025-01-11 printed 2025-01-18. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+warm-global-dance-radio,2018-01-03,2026-03-13,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2026-03-07 printed 2026-03-14. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
 hot-holiday-songs,2018-01-04,2018-12-07,seasonal_offseason,Gap between stored holiday or summer issues. Not an archive search.
 hot-holiday-songs,2019-01-06,2019-12-06,seasonal_offseason,Gap between stored holiday or summer issues. Not an archive search.
 hot-holiday-songs,2020-01-05,2020-12-04,seasonal_offseason,Gap between stored holiday or summer issues. Not an archive search.
@@ -41,61 +37,18 @@ summer-songs,2022-09-11,2023-06-09,seasonal_offseason,Gap between stored holiday
 summer-songs,2023-09-10,2024-06-07,seasonal_offseason,Gap between stored holiday or summer issues. Not an archive search.
 summer-songs,2024-09-08,2025-06-06,seasonal_offseason,Gap between stored holiday or summer issues. Not an archive search.
 summer-songs,2025-09-07,2026-06-05,seasonal_offseason,Gap between stored holiday or summer issues. Not an archive search.
-billboard-u-s-afrobeats-songs,2018-01-03,2022-04-01,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-lyricfind-us,2018-05-26,2018-05-26,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2018-05-26 printed 2018-06-02, not a separate issue and not the chart's latest week."
-lyricfind-global,2018-05-26,2018-05-26,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2018-05-26 printed 2018-06-02, not a separate issue and not the chart's latest week."
-billboard-global-200,2018-01-03,2020-09-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-global-excl-us,2018-01-03,2020-09-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-the-arabic-hot-100,2018-01-03,2023-12-15,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-the-arabic-hot-100,2026-02-21,2026-02-21,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2026-02-21 printed 2026-02-28, not a separate issue and not the chart's latest week."
-billboard-argentina-hot-100,2018-01-03,2018-11-09,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-argentina-hot-100,2023-08-19,2023-08-19,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2023-08-19 printed 2023-08-26, not a separate issue and not the chart's latest week."
-billboard-brasil-hot-100,2018-01-03,2023-09-01,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-colombia-hot-100,2018-01-03,2025-11-14,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-italy-hot-100,2018-01-03,2023-06-16,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-italy-hot-100,2023-09-23,2023-09-23,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2023-09-23 printed 2023-09-30, not a separate issue and not the chart's latest week."
-billboard-korea-global-k-songs,2018-01-03,2025-12-05,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-philippines-hot-100,2018-01-03,2024-07-05,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-philippines-top-philippine-songs,2018-01-03,2024-07-05,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-billboard-vietnam-hot-100-songs,2022-01-14,2025-05-30,not_recovered_after_reported_launch,"Billboard chart-beat article, 11 Jan 2022: Billboard Vietnam Hot 100 and Billboard Vietnam Top Vietnamese Songs launch Friday 14 Jan 2022. https://www.billboard.com/music/chart-beat/billboard-vietnam-charts-1235016406/"
-billboard-vietnam-top-vietnamese-songs,2022-01-14,2025-06-27,not_recovered_after_reported_launch,Same Billboard article as the Vietnam Hot 100: both charts launch 14 Jan 2022. https://www.billboard.com/music/chart-beat/billboard-vietnam-charts-1235016406/
-china-tme-uni-songs,2018-01-03,2022-11-04,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-australia-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-austria-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-belgium-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-bolivia-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-chile-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-croatia-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-czech-republic-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-denmark-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-ecuador-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-finland-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-france-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-germany-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-greece-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hong-kong-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-hungary-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-iceland-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-india-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-indonesia-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-ireland-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-luxembourg-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-malaysia-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-mexico-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-netherlands-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-new-zealand-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-norway-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-peru-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-poland-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-portugal-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-romania-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-singapore-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-slovakia-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-south-africa-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-spain-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-sweden-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-switzerland-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-taiwan-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-thailand-songs-hotw,2022-02-20,2026-07-31,archive_not_recovered,"Debut week 2022-02-19 was recovered from Internet Archive capture 20220215211337. Live billboard.com dates in this span print 2026-08-01. Wayback availability had no snapshot for 2022-03-19, 2022-06-18, 2022-12-17, 2023-06-17, 2024-02-17, 2025-02-15, or 2026-07-25. billboardth.com was not imported: probed Week of 19 Sep 2022 (2022-W38) is a 100-song Billboard Thailand list, while Billboard.com Thailand Songs is 25 songs, and the debut week URL on that site returned a 404 page."
-turkey-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
-u-k-songs-hotw,2018-01-03,2022-02-18,before_first_stored_week,No earlier printed week is stored. This interval is not a launch date.
+lyricfind-us,2018-05-26,2018-05-26,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2018-05-26 printed 2018-06-02, not a separate issue and not the chart's latest week. Rechecked 2026-11-10 with the same result."
+lyricfind-global,2018-05-26,2018-05-26,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2018-05-26 printed 2018-06-02, not a separate issue and not the chart's latest week. Rechecked 2026-11-10 with the same result."
+the-arabic-hot-100,2026-02-21,2026-02-21,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2026-02-21 printed 2026-02-28, not a separate issue and not the chart's latest week. Rechecked 2026-11-10 with the same result."
+billboard-argentina-hot-100,2018-10-13,2018-11-03,not_recovered_after_reported_launch,"Billboard Argentina, 12 Oct 2018, and Billboard, 17 Oct 2018: the first Argentina Hot 100 is the chart dated 13 Oct 2018, No. 1 Cuando Te Besé. The stored file begins 2018-11-10. On 2026-11-10 the URLs for 2018-10-13, 2018-10-20, 2018-10-27 and 2018-11-03 each printed 2018-11-10, so those four issue dates were not recovered. https://www.billboard.com/pro/argentina-hot-100-chart-debuts-becky-g-paulo-londra/"
+billboard-argentina-hot-100,2023-08-19,2023-08-19,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2023-08-19 printed 2023-08-26, not a separate issue and not the chart's latest week. Rechecked 2026-11-10 with the same result."
+billboard-colombia-hot-100,2018-01-03,2025-11-14,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2025-11-08 printed 2025-11-15. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+billboard-italy-hot-100,2023-09-23,2023-09-23,requested_date_resolved_to_next_stored_week,"On 2026-11-09 the live URL for 2023-09-23 printed 2023-09-30, not a separate issue and not the chart's latest week. Rechecked 2026-11-10 with the same result."
+billboard-korea-global-k-songs,2018-01-03,2025-12-05,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2025-11-29 printed 2025-12-06. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+billboard-vietnam-hot-100-songs,2022-01-14,2025-05-24,not_recovered_after_reported_launch,"Billboard chart-beat article, 11 Jan 2022: Billboard Vietnam Hot 100 and Billboard Vietnam Top Vietnamese Songs launch Friday 14 Jan 2022. https://www.billboard.com/music/chart-beat/billboard-vietnam-charts-1235016406/"
+billboard-vietnam-top-vietnamese-songs,2022-01-14,2025-06-21,not_recovered_after_reported_launch,Same Billboard article as the Vietnam Hot 100: both charts launch 14 Jan 2022. https://www.billboard.com/music/chart-beat/billboard-vietnam-charts-1235016406/
+china-tme-uni-songs,2018-01-03,2022-11-04,before_first_stored_week,"No earlier printed week is stored. This interval is not a launch date. On 2026-11-10 the URL for 2022-10-29 printed 2022-11-05. No contemporary launch article was found in this pass, so this span is not recorded as a launch and not recorded as missing published weeks."
+thailand-songs-hotw,2022-02-26,2026-07-25,archive_not_recovered,"Debut week 2022-02-19 was recovered from Internet Archive capture 20220215211337. Live billboard.com dates in this span print 2026-08-01. Wayback availability had no snapshot for 2022-03-19, 2022-06-18, 2022-12-17, 2023-06-17, 2024-02-17, 2025-02-15, or 2026-07-25. billboardth.com was not imported: probed Week of 19 Sep 2022 (2022-W38) is a 100-song Billboard Thailand list, while Billboard.com Thailand Songs is 25 songs, and the debut week URL on that site returned a 404 page."
+official-uk-songs,1952-11-14,2011-01-22,pre_2018_history_scope,"Left uncollected on purpose. Billboard's public page does not serve a matching week before 2011-01-29: requests for 2000-01-08 and 2011-01-22 print 2011-01-29. The 1952-11-14 start is the Wikipedia date in section 1, not a page checked here. Not a source failure."
+adult-contemporary,1961-07-17,2009-12-26,pre_2018_history_scope,"Left uncollected on purpose. 1990-01-06 prints that date with 50 positions, and the 1990-2009 issues were not downloaded. 1961-07-22 prints 1961-07-24, so the Wikipedia start is not a matching issue date. Not a source failure."
+canadian-hot-100,2007-03-24,2007-03-24,pre_2018_history_scope,"The public page for 2007-03-24 prints 2007-03-31, the first stored week. No earlier Canadian Hot 100 issue was requested. This is the chart boundary on the public page, not a failed download."

@@ -1,5 +1,5 @@
 chart,chart_name,status,checked_against,weeks_compared,positions_compared,agreement_pct,last_week_rows_checked,last_week_agreement_pct,flagged_weeks
-adult-contemporary,Adult Contemporary,unverified,,,,,12623,100.00,2018-01-03
+adult-contemporary,Adult Contemporary,unverified,,,,,24151,99.94,2018-01-03
 adult-pop-songs,Adult Pop Airplay,unverified,,,,,17251,100.00,2018-01-03
 alternative-airplay,Alternative Airplay,unverified,,,,,17180,100.00,2018-01-03
 alternative-streaming-songs,Alternative Streaming Songs,unverified,,,,,7443,100.00,
@@ -20,7 +20,7 @@ billboard-vietnam-hot-100-songs,Billboard Vietnam Hot 100,unverified,,,,,1566,10
 billboard-vietnam-top-vietnamese-songs,Billboard Vietnam Top Vietnamese Songs,unverified,,,,,1469,100.00,
 bolivia-songs-hotw,Bolivia Songs,unverified,,,,,5488,100.00,
 bubbling-under-hot-100-singles,Bubbling Under Hot 100,unverified,,,,,6735,100.00,2018-01-03
-canadian-hot-100,Billboard Canadian Hot 100,unverified,,,,,39151,99.99,2018-01-03
+canadian-hot-100,Billboard Canadian Hot 100,unverified,,,,,88937,99.91,2018-01-03
 chile-songs-hotw,Chile Songs,unverified,,,,,5351,100.00,
 china-tme-uni-songs,China TME UNI Chart,unverified,,,,,8252,99.49,
 christian-airplay,Christian Airplay,unverified,,,,,19590,100.00,2018-01-03
@@ -87,7 +87,7 @@ mexico-songs-hotw,Mexico Songs,unverified,,,,,5478,100.00,
 netherlands-songs-hotw,Netherlands Songs,unverified,,,,,5164,100.00,
 new-zealand-songs-hotw,New Zealand Songs,unverified,,,,,5204,100.00,
 norway-songs-hotw,Norway Songs,unverified,,,,,5034,100.00,
-official-uk-songs,The Official U.K. Singles Chart,unverified,,,,,7576,100.00,2018-01-03
+official-uk-songs,The Official U.K. Singles Chart,unverified,,,,,11515,99.91,2018-01-03
 peru-songs-hotw,Peru Songs,unverified,,,,,5540,100.00,
 poland-songs-hotw,Poland Songs,unverified,,,,,4903,100.00,
 pop-songs,Pop Airplay,verified_2018_only,pdp2600/chartscraper (2018 only),52,2080,100.00,17190,100.00,2018-01-03

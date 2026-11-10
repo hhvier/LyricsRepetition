@@ -1,24 +1,23 @@
 # Billboard weekly chart validation
 
-This is the collector's report as generated; only file paths were updated when the files moved to charts/billboard/. Verification flags are in verification.csv.
+Totals and the included-charts table match `catalog.csv` and `billboard_weekly_songs.csv.gz` as of 2026-11-10. The Hot 100 narrative and spot checks below are from the 2026-11-09 read and were not rerun. Verification flags are in verification.csv.
 
-Generated 2026-11-09T18:49:11+00:00.
-Song-chart rows: 1370417.
+Song-chart rows: 1444116.
 These are recovered printed weeks, not a claim that every Billboard song chart since 2018 was collected.
-Combined file: charts/billboard/billboard_weekly_songs.csv.gz (16.9 MB, 1370417 rows).
+Combined file: charts/billboard/billboard_weekly_songs.csv.gz (17.7 MB, 1444116 rows).
 
 ## Coverage
 
-Attempted song-chart statuses: done=57, partial=63, skipped=18
-Menu charts recorded as skipped (albums, artist/credit charts, all-time lists): 145.
+Attempted song-chart statuses: done=107, partial=13, skipped=18
+Menu charts recorded as skipped (albums, artist/credit charts, all-time lists): 127.
 
 Rows by region:
 
-- United States: 881489
+- United States: 894029
+- Canada: 102500
 - Global: 77150
 - Global excluding United States: 64200
-- Canada: 46300
-- United Kingdom: 15455
+- United Kingdom: 20414
 - Japan: 11550
 - China: 10500
 - Argentina: 10425
@@ -112,7 +111,7 @@ The same day's undated pages matched the saved last week for Hot 100 (7 Nov), Ja
 WARM Global Dance Radio's live URL for 1 Jun 2024 prints 14 Mar 2026. That first recovered week is not a documented launch.
 Single missing issue dates were re-requested and resolved to the next saved week, not to the latest issue: LyricFind 26 May 2018, Argentina 19 Aug 2023, Italy 23 Sep 2023, Arabic 21 Feb 2026.
 `every_stored_week_has_100_rows` is true only when every stored week has 100 parsed rows. It is not a census of a 100-deep chart.
-A 25-row Hits of the World chart, a 25-row Japan Hot 100 page, and a 20-row Official U.K. page are not full 100s.
+A 25-row Hits of the World chart and a 25-row Japan Hot 100 page are not full 100s. The Official U.K. page lists 10 positions from 2011-01-29 through 2015-06-06, 9 on 2011-12-31, and 20 from 2015-06-13. `last_week`, `weeks_on_chart`, and the new-entry flag follow that published list, not the Official Charts 100, and their meaning changes when the depth goes from 10 to 20.
 Dance Club Songs: every recovered week has 55 rows, 118 weeks, 2018-01-03 through 2020-03-28. Bubbling Under: every recovered week has 25 rows, 463 weeks. Neither was re-checked against a printed magazine in this pass.
 Those two counts describe the saved pages. They were not re-checked against a printed magazine.
 
@@ -131,7 +130,7 @@ Gospel Streaming Songs 28 Sep–5 Oct 2024, LyricFind U.S. and Global at the end
 | digital-song-sales | United States | 463 | 2018-01-03 | 2026-11-07 | 19175 | 50 | False | contiguous_stored_weeks |
 | bubbling-under-hot-100-singles | United States | 463 | 2018-01-03 | 2026-11-07 | 11575 | 25 | False | contiguous_stored_weeks |
 | pop-songs | United States | 463 | 2018-01-03 | 2026-11-07 | 18520 | 40 | False | contiguous_stored_weeks |
-| adult-contemporary | United States | 463 | 2018-01-03 | 2026-11-07 | 13890 | 30 | False | contiguous_stored_weeks |
+| adult-contemporary | United States | 881 | 2010-01-02 | 2026-11-07 | 26430 | 30 | False | contiguous_stored_weeks |
 | adult-pop-songs | United States | 463 | 2018-01-03 | 2026-11-07 | 18520 | 40 | False | contiguous_stored_weeks |
 | country-songs | United States | 463 | 2018-01-03 | 2026-11-07 | 23150 | 50 | False | contiguous_stored_weeks |
 | country-streaming-songs | United States | 463 | 2018-01-03 | 2026-11-07 | 11575 | 25 | False | contiguous_stored_weeks |
@@ -140,11 +139,11 @@ Gospel Streaming Songs 28 Sep–5 Oct 2024, LyricFind U.S. and Global at the end
 | rock-airplay | United States | 463 | 2018-01-03 | 2026-11-07 | 23150 | 50 | False | contiguous_stored_weeks |
 | hot-rock-songs | United States | 463 | 2018-01-03 | 2026-11-07 | 11575 | 25 | False | contiguous_stored_weeks |
 | rock-streaming-songs | United States | 463 | 2018-01-03 | 2026-11-07 | 11575 | 25 | False | contiguous_stored_weeks |
-| hot-alternative-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | stored_weeks_start_later |
-| alternative-streaming-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | stored_weeks_start_later |
+| hot-alternative-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | contiguous_stored_weeks |
+| alternative-streaming-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | contiguous_stored_weeks |
 | alternative-airplay | United States | 463 | 2018-01-03 | 2026-11-07 | 18520 | 40 | False | contiguous_stored_weeks |
-| hot-hard-rock-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | stored_weeks_start_later |
-| hard-rock-streaming-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | stored_weeks_start_later |
+| hot-hard-rock-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | contiguous_stored_weeks |
+| hard-rock-streaming-songs | United States | 335 | 2020-06-13 | 2026-11-07 | 8375 | 25 | False | contiguous_stored_weeks |
 | triple-a | United States | 463 | 2018-01-03 | 2026-11-07 | 18520 | 40 | False | contiguous_stored_weeks |
 | hot-mainstream-rock-tracks | United States | 463 | 2018-01-03 | 2026-11-07 | 18520 | 40 | False | contiguous_stored_weeks |
 | r-b-hip-hop-songs | United States | 463 | 2018-01-03 | 2026-11-07 | 23150 | 50 | False | contiguous_stored_weeks |
@@ -187,64 +186,64 @@ Gospel Streaming Songs 28 Sep–5 Oct 2024, LyricFind U.S. and Global at the end
 | holiday-streaming-songs | United States | 45 | 2018-01-03 | 2026-01-03 | 2250 | 50 | False | seasonal_stored_weeks |
 | holiday-songs | United States | 45 | 2018-01-03 | 2026-01-03 | 2250 | 50 | False | seasonal_stored_weeks |
 | summer-songs | United States | 126 | 2018-06-09 | 2026-09-12 | 2520 | 20 | False | seasonal_stored_weeks |
-| billboard-u-s-afrobeats-songs | United States | 241 | 2022-04-02 | 2026-11-07 | 11975 | 50 | False | stored_weeks_start_later |
+| billboard-u-s-afrobeats-songs | United States | 241 | 2022-04-02 | 2026-11-07 | 11975 | 50 | False | contiguous_stored_weeks |
 | lyricfind-us | United States | 462 | 2018-01-03 | 2026-11-07 | 11550 | 25 | False | contiguous_stored_weeks |
 | lyricfind-global | Global | 462 | 2018-01-03 | 2026-11-07 | 11550 | 25 | False | contiguous_stored_weeks |
-| billboard-global-200 | Global | 321 | 2020-09-19 | 2026-11-07 | 64200 | 200 | False | stored_weeks_start_later |
-| billboard-global-excl-us | Global excluding United States | 321 | 2020-09-19 | 2026-11-07 | 64200 | 200 | False | stored_weeks_start_later |
-| the-arabic-hot-100 | Arabic (worldwide) | 150 | 2023-12-16 | 2026-10-31 | 3750 | 25 | False | stored_weeks_start_later |
+| billboard-global-200 | Global | 321 | 2020-09-19 | 2026-11-07 | 64200 | 200 | False | contiguous_stored_weeks |
+| billboard-global-excl-us | Global excluding United States | 321 | 2020-09-19 | 2026-11-07 | 64200 | 200 | False | contiguous_stored_weeks |
+| the-arabic-hot-100 | Arabic (worldwide) | 150 | 2023-12-16 | 2026-10-31 | 3750 | 25 | False | contiguous_stored_weeks |
 | billboard-argentina-hot-100 | Argentina | 417 | 2018-11-10 | 2026-11-07 | 10425 | 25 | False | stored_weeks_start_later |
-| billboard-brasil-hot-100 | Brazil | 167 | 2023-09-02 | 2026-11-07 | 4175 | 25 | False | stored_weeks_start_later |
-| canadian-hot-100 | Canada | 463 | 2018-01-03 | 2026-11-07 | 46300 | 100 | True | contiguous_stored_weeks |
+| billboard-brasil-hot-100 | Brazil | 167 | 2023-09-02 | 2026-11-07 | 4175 | 25 | False | contiguous_stored_weeks |
+| canadian-hot-100 | Canada | 1025 | 2007-03-31 | 2026-11-07 | 102500 | 100 | True | contiguous_stored_weeks |
 | billboard-colombia-hot-100 | Colombia | 50 | 2025-11-15 | 2026-10-24 | 1250 | 25 | False | stored_weeks_start_later |
-| billboard-italy-hot-100 | Italy | 177 | 2023-06-17 | 2026-11-07 | 4425 | 25 | False | stored_weeks_start_later |
+| billboard-italy-hot-100 | Italy | 177 | 2023-06-17 | 2026-11-07 | 4425 | 25 | False | contiguous_stored_weeks |
 | japan-hot-100 | Japan | 462 | 2018-01-03 | 2026-10-31 | 11550 | 25 | False | contiguous_stored_weeks |
 | billboard-korea-global-k-songs | South Korea | 49 | 2025-12-06 | 2026-11-07 | 1225 | 25 | False | stored_weeks_start_later |
-| billboard-philippines-hot-100 | Philippines | 120 | 2024-07-06 | 2026-10-17 | 3000 | 25 | False | stored_weeks_start_later |
-| billboard-philippines-top-philippine-songs | Philippines | 120 | 2024-07-06 | 2026-10-17 | 3000 | 25 | False | stored_weeks_start_later |
+| billboard-philippines-hot-100 | Philippines | 120 | 2024-07-06 | 2026-10-17 | 3000 | 25 | False | contiguous_stored_weeks |
+| billboard-philippines-top-philippine-songs | Philippines | 120 | 2024-07-06 | 2026-10-17 | 3000 | 25 | False | contiguous_stored_weeks |
 | billboard-vietnam-hot-100-songs | Vietnam | 75 | 2025-05-31 | 2026-10-31 | 1875 | 25 | False | stored_weeks_start_later |
 | billboard-vietnam-top-vietnamese-songs | Vietnam | 71 | 2025-06-28 | 2026-10-31 | 1775 | 25 | False | stored_weeks_start_later |
-| official-uk-songs | United Kingdom | 464 | 2018-01-03 | 2026-11-14 | 9280 | 20 | False | contiguous_stored_weeks |
+| official-uk-songs | United Kingdom | 826 | 2011-01-29 | 2026-11-14 | 14239 | 20 | False | contiguous_stored_weeks |
 | china-tme-uni-songs | China | 210 | 2022-11-05 | 2026-11-07 | 10500 | 50 | False | stored_weeks_start_later |
-| australia-songs-hotw | Australia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| austria-songs-hotw | Austria | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| belgium-songs-hotw | Belgium | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| bolivia-songs-hotw | Bolivia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| chile-songs-hotw | Chile | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| croatia-songs-hotw | Croatia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| czech-republic-songs-hotw | Czech Republic | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| denmark-songs-hotw | Denmark | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| ecuador-songs-hotw | Ecuador | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| finland-songs-hotw | Finland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| france-songs-hotw | France | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| germany-songs-hotw | Germany | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| greece-songs-hotw | Greece | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| hong-kong-songs-hotw | Hong Kong | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| hungary-songs-hotw | Hungary | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| iceland-songs-hotw | Iceland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| india-songs-hotw | India | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| indonesia-songs-hotw | Indonesia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| ireland-songs-hotw | Ireland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| luxembourg-songs-hotw | Luxembourg | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| malaysia-songs-hotw | Malaysia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| mexico-songs-hotw | Mexico | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| netherlands-songs-hotw | Netherlands | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| new-zealand-songs-hotw | New Zealand | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| norway-songs-hotw | Norway | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| peru-songs-hotw | Peru | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| poland-songs-hotw | Poland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| portugal-songs-hotw | Portugal | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| romania-songs-hotw | Romania | 247 | 2022-02-19 | 2026-11-07 | 6173 | 25 | False | stored_weeks_start_later |
-| singapore-songs-hotw | Singapore | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| slovakia-songs-hotw | Slovakia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| south-africa-songs-hotw | South Africa | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| spain-songs-hotw | Spain | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| sweden-songs-hotw | Sweden | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| switzerland-songs-hotw | Switzerland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| taiwan-songs-hotw | Taiwan | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| thailand-songs-hotw | Thailand | 16 | 2022-02-19 | 2026-11-07 | 400 | 25 | False | unexplained_internal_gap |
-| turkey-songs-hotw | Turkey | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
-| u-k-songs-hotw | United Kingdom | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | stored_weeks_start_later |
+| australia-songs-hotw | Australia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| austria-songs-hotw | Austria | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| belgium-songs-hotw | Belgium | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| bolivia-songs-hotw | Bolivia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| chile-songs-hotw | Chile | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| croatia-songs-hotw | Croatia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| czech-republic-songs-hotw | Czech Republic | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| denmark-songs-hotw | Denmark | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| ecuador-songs-hotw | Ecuador | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| finland-songs-hotw | Finland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| france-songs-hotw | France | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| germany-songs-hotw | Germany | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| greece-songs-hotw | Greece | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| hong-kong-songs-hotw | Hong Kong | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| hungary-songs-hotw | Hungary | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| iceland-songs-hotw | Iceland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| india-songs-hotw | India | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| indonesia-songs-hotw | Indonesia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| ireland-songs-hotw | Ireland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| luxembourg-songs-hotw | Luxembourg | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| malaysia-songs-hotw | Malaysia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| mexico-songs-hotw | Mexico | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| netherlands-songs-hotw | Netherlands | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| new-zealand-songs-hotw | New Zealand | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| norway-songs-hotw | Norway | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| peru-songs-hotw | Peru | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| poland-songs-hotw | Poland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| portugal-songs-hotw | Portugal | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| romania-songs-hotw | Romania | 247 | 2022-02-19 | 2026-11-07 | 6173 | 25 | False | contiguous_stored_weeks |
+| singapore-songs-hotw | Singapore | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| slovakia-songs-hotw | Slovakia | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| south-africa-songs-hotw | South Africa | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| spain-songs-hotw | Spain | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| sweden-songs-hotw | Sweden | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| switzerland-songs-hotw | Switzerland | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| taiwan-songs-hotw | Taiwan | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| thailand-songs-hotw | Thailand | 16 | 2022-02-19 | 2026-11-07 | 400 | 25 | False | archive_not_recovered |
+| turkey-songs-hotw | Turkey | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
+| u-k-songs-hotw | United Kingdom | 247 | 2022-02-19 | 2026-11-07 | 6175 | 25 | False | contiguous_stored_weeks |
 
 ## Skipped probe or empty charts
 
@@ -267,4 +266,3 @@ A live 404, or a page that resolves to a week before 2018, is not proof the slug
 - `billboard-korea-100` (Billboard Korea 100): probed historical slug; not_found: 404 for https://www.billboard.com/charts/billboard-korea-100/
 - `youtube-songs` (YouTube Songs): probed historical slug; not_found: 404 for https://www.billboard.com/charts/youtube-songs/
 - `on-demand-streaming-songs` (On-Demand Streaming Songs): probed historical slug; not_found: 404 for https://www.billboard.com/charts/on-demand-streaming-songs/
-
