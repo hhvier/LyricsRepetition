@@ -1,0 +1,121 @@
+chart,chart_name,status,checked_against,weeks_compared,positions_compared,agreement_pct,last_week_rows_checked,last_week_agreement_pct,flagged_weeks
+adult-contemporary,Adult Contemporary,unverified,,,,,12623,100.00,2018-01-03
+adult-pop-songs,Adult Pop Airplay,unverified,,,,,17251,100.00,2018-01-03
+alternative-airplay,Alternative Airplay,unverified,,,,,17180,100.00,2018-01-03
+alternative-streaming-songs,Alternative Streaming Songs,unverified,,,,,7443,100.00,
+australia-songs-hotw,Australia Songs,unverified,,,,,5212,100.00,
+austria-songs-hotw,Austria Songs,unverified,,,,,4877,100.00,
+belgium-songs-hotw,Belgium Songs,unverified,,,,,5195,100.00,
+billboard-argentina-hot-100,Billboard Argentina Hot 100,unverified,,,,,9278,100.00,
+billboard-brasil-hot-100,Billboard Brasil Hot 100,unverified,,,,,3641,100.00,
+billboard-colombia-hot-100,Billboard Colombia Hot 100,unverified,,,,,1040,100.00,
+billboard-global-200,Billboard Global 200,unverified,,,,,56688,99.90,
+billboard-global-excl-us,Billboard Global Excl. US,unverified,,,,,57545,99.95,
+billboard-italy-hot-100,Billboard Italy Hot 100,unverified,,,,,3455,100.00,
+billboard-korea-global-k-songs,Billboard Korea Global K-Songs,unverified,,,,,1087,100.00,
+billboard-philippines-hot-100,Billboard Philippines Hot 100,unverified,,,,,2630,100.00,
+billboard-philippines-top-philippine-songs,Billboard Philippines Top Philippine Songs,unverified,,,,,2731,100.00,
+billboard-u-s-afrobeats-songs,Billboard U.S. Afrobeats Songs,unverified,,,,,10560,99.89,
+billboard-vietnam-hot-100-songs,Billboard Vietnam Hot 100,unverified,,,,,1566,100.00,
+billboard-vietnam-top-vietnamese-songs,Billboard Vietnam Top Vietnamese Songs,unverified,,,,,1469,100.00,
+bolivia-songs-hotw,Bolivia Songs,unverified,,,,,5488,100.00,
+bubbling-under-hot-100-singles,Bubbling Under Hot 100,unverified,,,,,6735,100.00,2018-01-03
+canadian-hot-100,Billboard Canadian Hot 100,unverified,,,,,39151,99.99,2018-01-03
+chile-songs-hotw,Chile Songs,unverified,,,,,5351,100.00,
+china-tme-uni-songs,China TME UNI Chart,unverified,,,,,8252,99.49,
+christian-airplay,Christian Airplay,unverified,,,,,19590,100.00,2018-01-03
+christian-songs,Hot Christian Songs,unverified,,,,,20631,99.87,2018-01-03
+christian-streaming-songs,Christian Streaming Songs,unverified,,,,,10544,100.00,2018-01-03
+country-airplay,Country Airplay,unverified,,,,,26341,100.00,2018-01-03
+country-songs,Hot Country Songs,verified_2018_only,pdp2600/chartscraper (2018 only),52,2600,98.27,20861,99.99,2018-01-03
+country-streaming-songs,Country Streaming Songs,unverified,,,,,10298,99.99,2018-01-03
+croatia-songs-hotw,Croatia Songs,unverified,,,,,5174,100.00,
+czech-republic-songs-hotw,Czech Republic Songs,unverified,,,,,5016,100.00,
+dance-club-play-songs,Dance Club Songs,unverified,,,,,5517,100.00,2018-01-03
+dance-electronic-songs,Hot Dance/Electronic Songs,verified_2018_only,pdp2600/chartscraper (2018 only),52,2600,99.92,17591,100.00,2018-01-03
+dance-electronic-streaming-songs,Dance Streaming Songs,unverified,,,,,9676,100.00,2018-01-03
+denmark-songs-hotw,Denmark Songs,unverified,,,,,4941,100.00,
+digital-song-sales,Digital Song Sales,unverified,,,,,13008,99.91,2018-01-03
+ecuador-songs-hotw,Ecuador Songs,unverified,,,,,5518,100.00,
+finland-songs-hotw,Finland Songs,unverified,,,,,4653,100.00,
+france-songs-hotw,France Songs,unverified,,,,,5119,100.00,
+germany-songs-hotw,Germany Songs,unverified,,,,,4894,100.00,
+gospel-airplay,Gospel Airplay,unverified,,,,,12880,100.00,2018-01-03
+gospel-songs,Hot Gospel Songs,unverified,,,,,10421,99.96,2018-01-03
+gospel-streaming-songs,Gospel Streaming Songs,unverified,,,,,6323,99.92,2018-01-03
+greece-songs-hotw,Greece Songs,unverified,,,,,4573,100.00,
+hard-rock-streaming-songs,Hard Rock Streaming Songs,unverified,,,,,7907,100.00,
+holiday-songs,Holiday Airplay,unverified,,,,,1686,100.00,2018-01-03
+holiday-streaming-songs,Holiday Streaming Songs,unverified,,,,,1716,100.00,2018-01-03
+hong-kong-songs-hotw,Hong Kong Songs,unverified,,,,,5311,100.00,
+hot-100,Billboard Hot 100™,verified,mhollingshead/billboard-hot-100,462,46200,99.88,39050,99.99,2018-01-03
+hot-adult-r-and-b-airplay,Adult R&B Airplay,unverified,,,,,12963,100.00,2018-01-03
+hot-alternative-songs,Hot Alternative Songs,unverified,,,,,7037,99.99,
+hot-christian-adult-contemporary,Christian AC Airplay,unverified,,,,,12792,100.00,2018-01-03
+hot-dance-airplay,Dance Airplay,unverified,,,,,16532,100.00,2018-01-03
+hot-dance-pop-songs,Hot Dance/Pop Songs,unverified,,,,,1224,100.00,
+hot-hard-rock-songs,Hot Hard Rock Songs,unverified,,,,,6879,99.99,
+hot-holiday-songs,Holiday 100,unverified,,,,,3434,99.48,2018-01-03
+hot-latin-pop-songs,Hot Latin Pop Songs,unverified,,,,,1823,100.00,
+hot-latin-rhythm-songs,Hot Latin Rhythm Songs,unverified,,,,,1762,100.00,
+hot-mainstream-rock-tracks,Mainstream Rock Airplay,unverified,,,,,17187,100.00,2018-01-03
+hot-r-and-b-hip-hop-airplay,R&B/Hip-Hop Airplay,unverified,,,,,21323,100.00,2018-01-03
+hot-rap-tracks,Rap Airplay,unverified,,,,,10670,100.00,2018-01-03
+hot-regional-mexican-songs,Hot Regional Mexican Songs,unverified,,,,,1775,100.00,
+hot-rock-songs,Hot Rock Songs,unverified,,,,,9479,99.94,2018-01-03
+hot-tropical-songs,Hot Tropical Songs,unverified,,,,,1868,100.00,
+hungary-songs-hotw,Hungary Songs,unverified,,,,,5213,100.00,
+iceland-songs-hotw,Iceland Songs,unverified,,,,,4917,100.00,
+india-songs-hotw,India Songs,unverified,,,,,5270,100.00,
+indonesia-songs-hotw,Indonesia Songs,unverified,,,,,5514,100.00,
+ireland-songs-hotw,Ireland Songs,unverified,,,,,5067,100.00,
+japan-hot-100,Billboard Japan Hot 100,verified_2018_only,pdp2600/chartscraper (2018 only),52,1300,99.85,8375,99.73,2018-01-03
+jazz-songs,Smooth Jazz Airplay,unverified,,,,,12604,100.00,2018-01-03
+latin-airplay,Latin Airplay,unverified,,,,,20928,100.00,2018-01-03
+latin-pop-airplay,Latin Pop Airplay,unverified,,,,,10547,100.00,2018-01-03
+latin-regional-mexican-airplay,Regional Mexican Airplay,unverified,,,,,16883,100.00,2018-01-03
+latin-rhythm-airplay,Latin Rhythm Airplay,unverified,,,,,10548,100.00,2018-01-03
+latin-songs,Hot Latin Songs,verified_2018_only,pdp2600/chartscraper (2018 only),52,2600,99.69,20335,100.00,2018-01-03
+latin-streaming-songs,Latin Streaming Songs,unverified,,,,,10346,100.00,2018-01-03
+latin-tropical-airplay,Tropical Airplay,unverified,,,,,10217,100.00,2018-01-03
+luxembourg-songs-hotw,Luxembourg Songs,unverified,,,,,5050,100.00,
+lyricfind-global,LyricFind Global,unverified,,,,,2886,100.00,2018-01-03
+lyricfind-us,LyricFind U.S.,unverified,,,,,2758,100.00,2018-01-03
+mainstream-r-and-b-hip-hop,Mainstream R&B/Hip-Hop Airplay,unverified,,,,,17103,100.00,2018-01-03
+malaysia-songs-hotw,Malaysia Songs,unverified,,,,,5263,100.00,
+mexico-songs-hotw,Mexico Songs,unverified,,,,,5478,100.00,
+netherlands-songs-hotw,Netherlands Songs,unverified,,,,,5164,100.00,
+new-zealand-songs-hotw,New Zealand Songs,unverified,,,,,5204,100.00,
+norway-songs-hotw,Norway Songs,unverified,,,,,5034,100.00,
+official-uk-songs,The Official U.K. Singles Chart,unverified,,,,,7576,100.00,2018-01-03
+peru-songs-hotw,Peru Songs,unverified,,,,,5540,100.00,
+poland-songs-hotw,Poland Songs,unverified,,,,,4903,100.00,
+pop-songs,Pop Airplay,verified_2018_only,pdp2600/chartscraper (2018 only),52,2080,100.00,17190,100.00,2018-01-03
+portugal-songs-hotw,Portugal Songs,unverified,,,,,5113,100.00,
+r-and-b-hip-hop-streaming-songs,R&B/Hip-Hop Streaming Songs,unverified,,,,,8689,100.00,2018-01-03
+r-and-b-songs,Hot R&B Songs,unverified,,,,,9727,100.00,2018-01-03
+r-and-b-streaming-songs,R&B Streaming Songs,unverified,,,,,5735,100.00,2018-01-03
+r-b-hip-hop-songs,Hot R&B/Hip-Hop Songs,verified_2018_only,pdp2600/chartscraper (2018 only),52,2600,99.92,18167,99.99,2018-01-03
+radio-songs,Radio Songs,unverified,,,,,21407,100.00,2018-01-03
+rap-song,Hot Rap Songs,unverified,,,,,8879,99.99,2018-01-03
+rap-streaming-songs,Rap Streaming Songs,unverified,,,,,5179,100.00,2018-01-03
+rhythmic-40,Rhythmic Airplay,unverified,,,,,16959,100.00,2018-01-03
+rock-airplay,Rock & Alternative Airplay,unverified,,,,,21191,100.00,2018-01-03
+rock-songs,Hot Rock & Alternative Songs,verified_2018_only,pdp2600/chartscraper (2018 only),52,2600,100.00,19075,99.90,2018-01-03
+rock-streaming-songs,Rock Streaming Songs,unverified,,,,,10200,99.99,2018-01-03
+romania-songs-hotw,Romania Songs,unverified,,,,,5033,99.94,
+singapore-songs-hotw,Singapore Songs,unverified,,,,,5116,99.77,
+slovakia-songs-hotw,Slovakia Songs,unverified,,,,,4988,100.00,
+south-africa-songs-hotw,South Africa Songs,unverified,,,,,5032,100.00,
+spain-songs-hotw,Spain Songs,unverified,,,,,5206,99.96,
+streaming-songs,Streaming Songs,unverified,,,,,18290,99.99,2018-01-03
+summer-songs,Songs Of The Summer,unverified,,,,,2256,100.00,
+sweden-songs-hotw,Sweden Songs,unverified,,,,,4889,100.00,
+switzerland-songs-hotw,Switzerland Songs,unverified,,,,,4946,100.00,
+taiwan-songs-hotw,Taiwan Songs,unverified,,,,,5290,99.85,
+thailand-songs-hotw,Thailand Songs,unverified,,,,,293,100.00,2022-02-19 (from the Internet Archive)
+the-arabic-hot-100,Billboard Arabic Hot 100,unverified,,,,,3270,100.00,
+triple-a,Adult Alternative Airplay,unverified,,,,,16938,100.00,2018-01-03
+turkey-songs-hotw,Turkey Songs,unverified,,,,,5388,99.93,
+u-k-songs-hotw,U.K. Songs,unverified,,,,,5247,100.00,
+warm-global-dance-radio,WARM Global Dance Radio,unverified,,,,,1211,99.42,

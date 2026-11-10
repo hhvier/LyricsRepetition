@@ -1,4 +1,7 @@
 # LyricsRepetition
+
+Weekly Billboard song charts from 2018 on are in [charts/billboard/](charts/billboard/), with verification flags in its README. [GAPS.md](GAPS.md) lists the time gaps in the chart data.
+
 There are three folders in this repository.
 
 On the py folder are 7 py files in this. 

@@ -1,0 +1,193 @@
+{
+  "note": "Fetch timestamps below were recorded when these specific requests were made. They were not backfilled onto the Nov 9 bulk scrape.",
+  "thailand_2022_02_19": {
+    "printed_week": "2022-02-19",
+    "rows": 25,
+    "number_one_title": "Until Then",
+    "number_one_artist": "Tilly Birds",
+    "requested_url": "https://web.archive.org/web/20220215211337id_/https://www.billboard.com/charts/thailand-songs-hotw/2022-02-19/",
+    "wayback_capture": "20220215211337",
+    "fetched_at": "2026-11-09T18:31:23+00:00",
+    "list_sha256": "cfa808f24117f6d526eb0392cfa6056466ec0537161e00cc05b3befb5544ff95",
+    "provenance": "internet_archive_id_snapshot",
+    "live_url_for_same_date_prints": "2026-08-01"
+  },
+  "live_resolution_checks": [
+    {
+      "requested_url": "https://www.billboard.com/charts/hot-100/",
+      "fetched_at": "2026-11-09T18:34:03+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/hot-100/",
+      "printed_week": "2026-11-07",
+      "rows": 100,
+      "chart_name": "Billboard Hot 100™",
+      "top": "Choosin' Texas"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/japan-hot-100/",
+      "fetched_at": "2026-11-09T18:34:04+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/japan-hot-100/",
+      "printed_week": "2026-10-31",
+      "rows": 25,
+      "chart_name": "Billboard Japan Hot 100",
+      "top": "Touch"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/official-uk-songs/",
+      "fetched_at": "2026-11-09T18:34:06+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/official-uk-songs/",
+      "printed_week": "2026-11-14",
+      "rows": 20,
+      "chart_name": "The Official U.K. Singles Chart",
+      "top": "Babydoll"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/the-arabic-hot-100/",
+      "fetched_at": "2026-11-09T18:34:07+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/the-arabic-hot-100/",
+      "printed_week": "2026-10-31",
+      "rows": 25,
+      "chart_name": "Billboard Arabic Hot 100",
+      "top": "Garee2a Awy"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/billboard-philippines-hot-100/",
+      "fetched_at": "2026-11-09T18:34:09+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/billboard-philippines-hot-100/",
+      "printed_week": "2026-10-17",
+      "rows": 25,
+      "chart_name": "Billboard Philippines Hot 100",
+      "top": "Na Para Bang"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/billboard-philippines-top-philippine-songs/",
+      "fetched_at": "2026-11-09T18:34:11+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/billboard-philippines-top-philippine-songs/",
+      "printed_week": "2026-10-17",
+      "rows": 25,
+      "chart_name": "Billboard Philippines Top Philippine Songs",
+      "top": "Na Para Bang"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/billboard-colombia-hot-100/",
+      "fetched_at": "2026-11-09T18:34:13+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/billboard-colombia-hot-100/",
+      "printed_week": "2026-10-24",
+      "rows": 25,
+      "chart_name": "Billboard Colombia Hot 100",
+      "top": "BbY WOW"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/billboard-vietnam-hot-100-songs/",
+      "fetched_at": "2026-11-09T18:34:15+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/billboard-vietnam-hot-100-songs/",
+      "printed_week": "2026-10-31",
+      "rows": 25,
+      "chart_name": "Billboard Vietnam Hot 100",
+      "top": "cho chut... (From \"TINH HA \"SAY HI\"\")"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/billboard-vietnam-top-vietnamese-songs/",
+      "fetched_at": "2026-11-09T18:34:16+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/billboard-vietnam-top-vietnamese-songs/",
+      "printed_week": "2026-10-31",
+      "rows": 25,
+      "chart_name": "Billboard Vietnam Top Vietnamese Songs",
+      "top": "cho chut... (From \"TINH HA \"SAY HI\"\")"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/thailand-songs-hotw/",
+      "fetched_at": "2026-11-09T18:34:18+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/thailand-songs-hotw/",
+      "printed_week": "2026-11-07",
+      "rows": 25,
+      "chart_name": "Thailand Songs",
+      "top": "Tarantino"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/thailand-songs-hotw/2022-02-19/",
+      "fetched_at": "2026-11-09T18:34:22+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/thailand-songs-hotw/2022-02-19/",
+      "printed_week": "2026-08-01",
+      "rows": 25,
+      "chart_name": "Thailand Songs",
+      "top": "Hourglass (Sign)"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/billboard-vietnam-hot-100-songs/2022-01-14/",
+      "fetched_at": "2026-11-09T18:34:26+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/billboard-vietnam-hot-100-songs/2022-01-14/",
+      "printed_week": "2025-05-31",
+      "rows": 25,
+      "chart_name": "Billboard Vietnam Hot 100",
+      "top": "Phep Mau"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/billboard-vietnam-top-vietnamese-songs/2022-01-14/",
+      "fetched_at": "2026-11-09T18:34:29+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/billboard-vietnam-top-vietnamese-songs/2022-01-14/",
+      "printed_week": "2025-06-28",
+      "rows": 25,
+      "chart_name": "Billboard Vietnam Top Vietnamese Songs",
+      "top": "Phep Mau"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/warm-global-dance-radio/",
+      "fetched_at": "2026-11-09T18:34:32+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/warm-global-dance-radio/",
+      "printed_week": "2026-11-07",
+      "rows": 40,
+      "chart_name": "WARM Global Dance Radio",
+      "top": "Just A Little Bit More"
+    },
+    {
+      "requested_url": "https://www.billboard.com/charts/warm-global-dance-radio/2024-06-01/",
+      "fetched_at": "2026-11-09T18:34:33+00:00",
+      "http_status": "200",
+      "final_url": "https://www.billboard.com/charts/warm-global-dance-radio/2024-06-01/",
+      "printed_week": "2026-03-14",
+      "rows": 40,
+      "chart_name": "WARM Global Dance Radio",
+      "top": "Release The Pressure"
+    }
+  ],
+  "alternate_source_probes": {
+    "billboardth_com": {
+      "decision": "not_imported",
+      "reason": "Not established as the same chart as billboard.com/charts/thailand-songs-hotw.",
+      "probes": [
+        {
+          "url": "https://www.billboardth.com/thai_song?week=2022-W38",
+          "observed": "Page titled Billboard Thailand, Week of September 19, 2022, with positions through 100. No. 1 was สลักจิต by POP PONGKOOL FEAT.DA ENDORPHINE. Until Then by Tilly Birds was position 17."
+        },
+        {
+          "url": "https://www.billboardth.com/thai_song?week=2022-W07",
+          "observed": "HTTP 200 body was a Billboard Thailand 404 page (about 9 KB), not a chart. That ISO week contains 2022-02-19, the only official Billboard.com Thailand Songs week recovered here, so the two lists could not be compared."
+        }
+      ]
+    },
+    "billboardvn_wayback": {
+      "decision": "not_imported",
+      "wikipedia": "en.wikipedia.org/wiki/Billboard_Vietnam_Hot_100 says a suspension from January 2024 to May 2025. Treated as secondary. Not recorded as an official hiatus.",
+      "availability": {
+        "url": "https://billboardvn.vn/billboard-vietnam-hot-100/",
+        "closest_capture": "20231003004850",
+        "id_fetch": "https://web.archive.org/web/20231003004850id_/https://billboardvn.vn/billboard-vietnam-hot-100/ returned 793 bytes and no chart table."
+      },
+      "cdx": "Prefix CDX for billboardvn.vn/billboard-vietnam-hot-100/ timed out after 18 seconds with no body."
+    }
+  }
+}
