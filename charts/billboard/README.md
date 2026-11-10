@@ -25,7 +25,7 @@ Columns: `chart`, `region`, `category`, `chart_name`, `week`, `rank`, `title`, `
 | --- | ---: | --- |
 | `verified` | 1 | Hot 100, compared with [mhollingshead/billboard-hot-100](https://github.com/mhollingshead/billboard-hot-100) for every week: 99.88% of 46,200 positions are the same song |
 | `verified_2018_only` | 7 | Hot Country, Hot R&B/Hip-Hop, Hot Latin, Pop Airplay, Hot Rock & Alternative, Hot Dance/Electronic and Japan Hot 100, compared with [pdp2600/chartscraper](https://github.com/pdp2600/chartscraper) for 2018: 98.3% to 100% the same. Weeks from 2019 on have no outside check |
-| `unverified` | 112 | No outside source was available |
+| `unverified` | 112 | No outside source was available. This includes the pre-2018 weeks of Canadian Hot 100, the U.K. chart and Adult Contemporary |
 
 Every chart also has an internal check: a row's printed `last_week` should equal the song's rank in the stored week before, wherever we hold that position. All 120 charts agree on 99.4% to 100% of those rows. That shows the weeks are consistent with each other, but it can't catch a wrong chart or a wrong date applied to every week.
 
@@ -38,4 +38,4 @@ Every chart also has an internal check: a row's printed `last_week` should equal
 
 ## Where it came from
 
-[Pull request #1](https://github.com/hhvier/LyricsRepetition/pull/1) collected the 2018-on files. The collector used for the later pre-2018 weeks and the launch checks is `py/billboard_charts.py` in this branch. The earlier copy remains in commit `4de0808` on `cursor/billboard-weekly-charts-2bc0`.
+[Pull request #1](https://github.com/hhvier/LyricsRepetition/pull/1) collected the 2018-on files. [Pull request #2](https://github.com/hhvier/LyricsRepetition/pull/2) added the pre-2018 weeks and the launch checks. The collector's code is not part of either merge; it remains in commit `4de0808` on `cursor/billboard-weekly-charts-2bc0` and commit `20bdae6` on `cursor/billboard-gap-fill-2bc0`.

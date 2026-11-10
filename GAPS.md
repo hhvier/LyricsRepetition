@@ -1,17 +1,17 @@
 # Chart data gaps
 
 Status on 2026-11-10. This lists **gaps in time** only: each chart's stored weeks are treated as complete, whatever their depth.
-Week-level detail is in [`charts/billboard/unrecovered_intervals.csv`](charts/billboard/unrecovered_intervals.csv). There is no `v2` branch and no `data/gaps.csv` in this repository.
+Week-level detail is in [`charts/billboard/unrecovered_intervals.csv`](charts/billboard/unrecovered_intervals.csv). On the `v2` branch (not pushed yet), `python -m pipeline report` also writes every chart's span and missing weeks to `data/gaps.csv`.
 Which charts were checked against another source is in [`charts/billboard/verification.csv`](charts/billboard/verification.csv) (see [`charts/billboard/README.md`](charts/billboard/README.md)).
 
 ## 1. History before 2018 that we don't have
 
 The weekly file's main block starts on 2018-01-03, but these charts are older. Start dates in the table are from Wikipedia, read on 2026-11-10. Canadian Hot 100 from 2007-03-31, the Official U.K. chart from 2011-01-29, and Adult Contemporary from 2010-01-02 are now in the weekly file. What was recovered, and what was left as a scope decision, is in section 8.
 
-| Chart | Started | Years missing before 2018 | Note |
+| Chart | Started | Years missing | Note |
 | --- | --- | ---: | --- |
-| The Official U.K. Singles Chart (`official-uk-songs`) | 1952-11-14 | 65 | the U.K. chart itself; Billboard's page shows 20 positions |
-| Adult Contemporary (`adult-contemporary`) | 1961-07-17 | 56 |  |
+| The Official U.K. Singles Chart (`official-uk-songs`) | 1952-11-14 | 58 | weekly file starts 2011-01-29; Billboard's page shows 10 to 20 positions |
+| Adult Contemporary (`adult-contemporary`) | 1961-07-17 | 48 | weekly file starts 2010-01-02 |
 | Mainstream Rock Airplay (`hot-mainstream-rock-tracks`) | 1981-03 | 37 |  |
 | Alternative Airplay (`alternative-airplay`) | 1988-09-10 | 29 |  |
 | Bubbling Under Hot 100 (`bubbling-under-hot-100-singles`) | 1992 | 26 | current run since its 1992 revival |
@@ -24,7 +24,6 @@ The weekly file's main block starts on 2018-01-03, but these charts are older. S
 | Digital Song Sales (`digital-song-sales`) | 2005-01-22 | 13 | sales tracked from 2004-10-30 |
 | Hot Gospel Songs (`gospel-songs`) | 2005-03-19 | 13 |  |
 | Latin Rhythm Airplay (`latin-rhythm-airplay`) | 2005-08 | 12 | about three months after 2005-05-21 |
-| Billboard Canadian Hot 100 (`canadian-hot-100`) | 2007-03-31 | 11 |  |
 | Hot R&B Songs (`r-and-b-songs`) | 2012-10-11 | 5 |  |
 | Country Airplay (`country-airplay`) | 2012-10-20 | 5 | Billboard also counts airplay-only Hot Country Songs from 1990-01-20 |
 | Latin Airplay (`latin-airplay`) | 2012-10-20 | 5 |  |
@@ -61,8 +60,9 @@ These 28 charts were already running on 2018-01-03, so some history is missing, 
 - Rock Streaming Songs (`rock-streaming-songs`)
 - Adult Alternative Airplay (`triple-a`)
 
-Already covered before 2018 by another source used in V2:
+Already covered before 2018:
 
+- Billboard Canadian Hot 100 (`canadian-hot-100`): weekly file from 2007-03-31 (chart launch)
 - Billboard Hot 100™ (`hot-100`): mhollingshead/billboard-hot-100 from 1958-08-04
 - Hot Country Songs (`country-songs`): chartscraper from 1958-10-20
 - Hot R&B/Hip-Hop Songs (`r-b-hip-hop-songs`): chartscraper from 1958-10-20
@@ -189,7 +189,7 @@ These charts start later than 2018-01-03. Many are probably new charts, but a fi
 
 ## 8. Follow-up, 2026-11-10
 
-The introduction and the opening of section 1 point here. Sections 2 to 7 are unchanged. This section records what was checked after them. There is no `v2` branch, no `python -m pipeline report`, and no `data/gaps.csv` in this repository. The week-level file is [`charts/billboard/unrecovered_intervals.csv`](charts/billboard/unrecovered_intervals.csv). The weekly file has 1,444,116 rows, including Adult Contemporary for 2010-01-02.
+The introduction and the opening of section 1 point here. Sections 2 to 7 are unchanged. This section records what was checked after them. The week-level file is [`charts/billboard/unrecovered_intervals.csv`](charts/billboard/unrecovered_intervals.csv). The weekly file has 1,444,116 rows, including Adult Contemporary for 2010-01-02.
 
 **Issue dates.** A hole between two stored issues is the issue dates strictly inside that hole: the next issue after the earlier week through the issue before the later week. Thailand Songs is 2022-02-26 to 2026-07-25. Billboard Vietnam Hot 100 ends 2025-05-24, and Billboard Vietnam Top Vietnamese Songs ends 2025-06-21. Those three rows in `unrecovered_intervals.csv` now use those dates. Rows labeled `before_first_stored_week` still end on the calendar day before the first stored week. They mean "nothing earlier is stored." They are not a list of missing issues.
 
