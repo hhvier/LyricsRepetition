@@ -186,3 +186,48 @@ These charts start later than 2018-01-03. Many are probably new charts, but a fi
 - **Chartscraper genre charts:** to 2018-12-31; continued by the weekly file from 2019.
 - **Mais Tocadas (Brazil):** yearly top 100, 1959 to 2025; the 2026 list is not final yet.
 - **Spotify weekly charts (Kworb, 21 markets):** still downloading; spans not known yet.
+
+## 8. Follow-up, 2026-11-10
+
+Sections 1 to 7 above are unchanged. This section records what was checked after them. There is no `v2` branch, no `python -m pipeline report`, and no `data/gaps.csv` in this repository. The week-level file is [`charts/billboard/unrecovered_intervals.csv`](charts/billboard/unrecovered_intervals.csv).
+
+**Issue dates.** A hole between two stored issues is the issue dates strictly inside that hole: the next issue after the earlier week through the issue before the later week. Thailand Songs is 2022-02-26 to 2026-07-25. Billboard Vietnam Hot 100 ends 2025-05-24, and Billboard Vietnam Top Vietnamese Songs ends 2025-06-21. Those three rows in `unrecovered_intervals.csv` now use those dates. Rows labeled `before_first_stored_week` still end on the calendar day before the first stored week. They mean "nothing earlier is stored." They are not a list of missing issues.
+
+**2018-01-03.** Fifty-six charts have this Wednesday issue. The rows are still in the weekly file. `verification.csv` flags them, and the chart README says to leave them out of analysis. It is not a time gap, and it was not deleted. On the three charts extended below, 2017-12-30 is followed by 2018-01-03 and then 2018-01-06. That 4-day step is the Wednesday issue, not a missing Saturday.
+
+**Section 2.** On 2026-11-10 the same four dates still printed the next stored week, not a chart of their own: LyricFind U.S. and LyricFind Global 2018-05-26 printed 2018-06-02; Argentina 2023-08-19 printed 2023-08-26; Italy 2023-09-23 printed 2023-09-30; Arabic 2026-02-21 printed 2026-02-28. No rows were added. They stay `requested_date_resolved_to_next_stored_week`.
+
+**Section 5, confirmed first issues.** These first stored weeks match a contemporary source, so weeks before them are not gaps. `catalog.csv` records the source.
+
+- Billboard Global 200 and Billboard Global Excl. US, 2020-09-19. Billboard, 14 Sep 2020. Stored No. 1 songs are WAP and Hawái.
+- Hot Alternative Songs, Hot Hard Rock Songs, Alternative Streaming Songs and Hard Rock Streaming Songs, 2020-06-13. Billboard, 10 Jun 2020. The two Hot charts' stored No. 1 songs match the article (Death Bed; Popular Monster).
+- Hits of the World charts whose first stored week is 2022-02-19. Billboard, 14 Feb 2022 and 15 Feb 2022, dates the inaugural rankings 19 Feb 2022. The 15 Feb article names the stored No. 1 for Australia, Slovakia, Austria, Germany, Luxembourg, Bolivia, Ecuador, Peru, Iceland, Ireland, the U.K. and Portugal. Bandwagon, 17 Feb 2022, names India, Indonesia and Taiwan. The other territories in this file are the same program launch and are not named one by one. On 2026-11-10 the 2022-02-12 URLs for Australia and France printed 2022-02-19.
+- Billboard U.S. Afrobeats Songs, 2022-04-02. Billboard, 29 Mar 2022. Stored No. 1 is Love Nwantiti.
+- Billboard Italy Hot 100, 2023-06-17. The page still prints that week, and the top songs are marked new with debut date 06/17/23.
+- Billboard Brasil Hot 100, 2023-09-02. On 2026-11-10 the 2023-08-26 URL printed 2023-09-02. A Wikipedia number-one list cites an archived Billboard Brasil page for the week of 28 Aug 2023; those Monday labels sit five days before the Saturday issue dates, and the stored No. 1 songs match through 2023-10-07. That archive page was not opened.
+- Billboard Arabic Hot 100, 2023-12-16. SRMG's 14 Dec 2023 announcement lists the same top three songs.
+- Billboard Philippines Hot 100 and Top Philippine Songs, 2024-07-06. GMA News, 4 Jul 2024, and Billboard Philippines. The stored top songs match.
+
+**Section 5, launch known and still missing.** Billboard Argentina Hot 100 launched with the chart dated 2018-10-13 (Billboard Argentina, 12 Oct 2018; Billboard, 17 Oct 2018; No. 1 Cuando Te Besé). The stored file starts 2018-11-10. On 2026-11-10 the URLs for 2018-10-13, 2018-10-20, 2018-10-27 and 2018-11-03 each printed 2018-11-10, so those four issue dates were not recovered. The stored public list is 25 songs in every week. The launch article describes a 100-song chart. No other list was imported.
+
+**Section 5, not confirmed.** Songs of the Summer is the seasonal chart in section 6. On 2026-11-10 the 2018-06-02 URL printed 2018-06-09. For China TME UNI, Hot Dance/Pop, the four April 2025 Latin song charts, Colombia, Korea Global K-Songs and WARM Global Dance Radio, the previous Saturday URL printed the first stored week. No contemporary launch article was found, so those spans stay `before_first_stored_week`: not a launch, and not a claim that the earlier weeks were published and missed.
+
+**Section 4, the four slugs that are not in the list of 14.** On 2026-11-10, `heatseekers-songs` printed the week of 2014-11-29 with 25 songs. It is not a 404, and it has no post-2018 week in this file. `alternative-digital-song-sales`, `hard-rock-digital-song-sales` and `dance-mix-show-airplay` resolve to year-end artist pages (Alternative Digital Song Sales Artists, Hard Rock Digital Song Sales Artists, Dance/Mix Show Airplay Artists), not a weekly song chart. Section 4 is the song-chart slugs that 404.
+
+**YouTube Songs.** Both earlier sentences are true. The chartscraper file runs 2011-08-27 to 2018-12-29, 384 weekly issues. `youtube-songs` on billboard.com is in the 404 list, so those rows were not copied.
+
+**Section 1, what was attempted.** Only weeks whose printed date matched the requested date were stored. Fetched 2026-11-10, 09:07–09:23 America/Sao_Paulo.
+
+| Chart | Stored | Rows | What the live page did not serve |
+| --- | --- | ---: | --- |
+| Billboard Canadian Hot 100 | 2007-03-31 to 2017-12-30, 562 weeks, 100 positions | 56,200 | 2007-03-24 prints 2007-03-31 |
+| The Official U.K. Singles Chart | 2011-01-29 to 2017-12-30, 362 weeks | 4,959 | 2000-01-08 and 2011-01-22 print 2011-01-29. Depth is 10 through 2015-06-06, 9 on 2011-12-31, and 20 from 2015-06-13 |
+| Adult Contemporary | 2010-01-09 to 2017-12-30, 417 weeks, 30 positions | 12,510 | 1990-01-06 prints that date with 50 positions and was not collected. 1961-07-22 prints 1961-07-24, so the Wikipedia start is not a matching issue date |
+
+The other charts in section 1 were not requested. Adult Contemporary from 1990 through 2009 was not requested. Nothing was taken back to the 1950s.
+
+**Section 6 and 7, what was actually checked.** Chartscraper files were read, not imported, except for this date check. Hot Country dates in that file are Mondays, 1958-10-20 through 2018-12-31, every step 7 days. Adding five days lines 2018-12-24 and 2018-12-31 up with Billboard's 2018-12-29 and 2019-01-05, and both No. 1 songs are Speechless. Hot R&B/Hip-Hop, Hot Latin, Pop Airplay, Hot Rock & Alternative, Hot Dance/Electronic and Japan Hot 100 use the same dates as Billboard's issue dates: the 2018-12-22 and 2018-12-29 No. 1 songs match with no shift. The five-day offset is the country file only. Hot R&B/Hip-Hop has one non-weekly step inside the file, 1978-11-06 to 1978-11-11. The file spans otherwise match the start and end dates in section 1. That is a check of these files, not a check that every historical Billboard week exists.
+
+The Hot 100 step from 1961-12-25 to 1962-01-06 was not fully audited. The billboard.com URL for 1961-12-30 prints the week of 6 Jan 1962, and a Google Books index of Billboard issues lists 25 Dec 1961 and then 6 Jan 1962. The claim that the Hot 100 has no other break from 1958 was not checked.
+
+Kworb is not in this repository, and there is no download here whose span could be read. Mais Tocadas was not re-downloaded. `py/maistocadas_scraper.py` requests yearly pages from 1959 through 2018. The statement that those lists run through 2025 was not checked. Neither source was merged into the weekly file.

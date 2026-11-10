@@ -1,6 +1,6 @@
-# Weekly Billboard song charts, 2018 on
+# Weekly Billboard song charts
 
-1,370,417 chart positions from 120 Billboard song charts, one row per song per week, for chart weeks from 2018-01-03 to 2026-11-14. They were read from Billboard's public chart pages on 2026-11-09. Album, artist and credit charts are not included.
+1,444,086 chart positions from 120 Billboard song charts, one row per song per week. The 2018-on weeks were read from Billboard's public chart pages on 2026-11-09. On 2026-11-10, three charts gained earlier weeks whose printed date matched the requested date: Canadian Hot 100 from 2007-03-31 (56,200 rows), the Official U.K. Singles Chart from 2011-01-29 (4,959 rows) and Adult Contemporary from 2010-01-09 (12,510 rows). The U.K. page lists 10 positions through 2015-06-06, 9 on 2011-12-31, and 20 from 2015-06-13. Album, artist and credit charts are not included.
 
 Time gaps, including the history before 2018 that is missing, are listed in [`GAPS.md`](../../GAPS.md).
 
@@ -8,7 +8,7 @@ Time gaps, including the history before 2018 that is missing, are listed in [`GA
 
 | File | Contents |
 | --- | --- |
-| `billboard_weekly_songs.csv.gz` | All positions (16.9 MB) |
+| `billboard_weekly_songs.csv.gz` | All positions |
 | `verification.csv` | Which charts were checked, against what, and which weeks are flagged |
 | `catalog.csv` | Every chart considered: included charts with spans and depth, and skipped ones with the reason |
 | `unrecovered_intervals.csv` | Open periods per chart, with evidence |
@@ -38,4 +38,4 @@ Every chart also has an internal check: a row's printed `last_week` should equal
 
 ## Where it came from
 
-[Pull request #1](https://github.com/hhvier/LyricsRepetition/pull/1) collected these files. The collector's code is not part of this merge; it remains in commit `4de0808` on the `cursor/billboard-weekly-charts-2bc0` branch.
+[Pull request #1](https://github.com/hhvier/LyricsRepetition/pull/1) collected the 2018-on files. The collector used for the later pre-2018 weeks and the launch checks is `py/billboard_charts.py` in this branch. The earlier copy remains in commit `4de0808` on `cursor/billboard-weekly-charts-2bc0`.

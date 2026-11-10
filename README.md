@@ -1,6 +1,6 @@
 # LyricsRepetition
 
-Weekly Billboard song charts from 2018 on are in [charts/billboard/](charts/billboard/), with verification flags in its README. [GAPS.md](GAPS.md) lists the time gaps in the chart data.
+Weekly Billboard song charts are in [charts/billboard/](charts/billboard/), with verification flags in its README. Three charts also include earlier weeks; the others start in 2018 or at a later launch. [GAPS.md](GAPS.md) lists the time gaps.
 
 There are three folders in this repository.
 

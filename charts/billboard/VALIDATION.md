@@ -268,3 +268,7 @@ A live 404, or a page that resolves to a week before 2018, is not proof the slug
 - `youtube-songs` (YouTube Songs): probed historical slug; not_found: 404 for https://www.billboard.com/charts/youtube-songs/
 - `on-demand-streaming-songs` (On-Demand Streaming Songs): probed historical slug; not_found: 404 for https://www.billboard.com/charts/on-demand-streaming-songs/
 
+## Follow-up, 2026-11-10
+
+The report above is the 2026-11-09 collector output. This pass appended 73,669 rows to `billboard_weekly_songs.csv.gz` (1,444,086 rows in total) for Canadian Hot 100, the Official U.K. Singles Chart and Adult Contemporary, only where the printed week matched the requested date. It did not rerun the 2018-on collector. Launch checks and the weeks that are still open are in `GAPS.md` section 8 and `unrecovered_intervals.csv`. `2018-01-03` rows were kept.
+
